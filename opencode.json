@@ -1,0 +1,14 @@
+{
+  "mcp": {
+    "servers": {
+      "figma-opencode-mcp": {
+        "type": "local",
+        "command": [
+          "npx",
+          "-y",
+          "figma-opencode-mcp@latest"
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,515 @@
+<?php
+
+add_action('acf/init', function () {
+  if (function_exists('acf_add_local_field_group')) {
+
+    acf_add_local_field_group(array(
+      'key' => 'group_team_page',
+      'title' => 'Ustawienia Strony Zespołu',
+      'fields' => array(
+        // HERO SECTION
+        array(
+          'key' => 'field_team_hero_tab',
+          'label' => 'Hero',
+          'type' => 'tab',
+        ),
+        array(
+          'key' => 'field_team_hero_category',
+          'label' => 'Kategoria Hero',
+          'name' => 'team_hero_category',
+          'type' => 'text',
+          'default_value' => 'Zespół Patronusec',
+        ),
+        array(
+          'key' => 'field_team_hero_title',
+          'label' => 'Tytuł Hero',
+          'name' => 'team_hero_title',
+          'type' => 'textarea',
+          'rows' => 2,
+          'default_value' => 'Poznaj 7 audytorów,<br>którzy zrobili 1000+ audytów w 60 krajach.',
+        ),
+        array(
+          'key' => 'field_team_hero_description',
+          'label' => 'Opis Hero',
+          'name' => 'team_hero_description',
+          'type' => 'textarea',
+          'rows' => 3,
+          'default_value' => 'Największy wyspecjalizowany zespół QSA w Polsce. Akredytowani przez PCI SSC. Biura w Poznaniu, Warszawie i Londynie.',
+        ),
+        array(
+          'key' => 'field_team_hero_locations',
+          'label' => 'Lokalizacje',
+          'name' => 'team_hero_locations',
+          'type' => 'repeater',
+          'layout' => 'table',
+          'button_label' => 'Dodaj lokalizację',
+          'sub_fields' => array(
+            array(
+              'key' => 'field_team_hero_location_name',
+              'label' => 'Nazwa',
+              'name' => 'name',
+              'type' => 'text',
+            ),
+          ),
+        ),
+
+        // TEAM GRID SECTION
+        array(
+          'key' => 'field_team_members_tab',
+          'label' => 'Zespół',
+          'type' => 'tab',
+        ),
+        array(
+          'key' => 'field_team_ceo',
+          'label' => 'Founder & CEO',
+          'name' => 'team_ceo',
+          'type' => 'group',
+          'layout' => 'block',
+          'sub_fields' => array(
+            array(
+              'key' => 'field_team_ceo_name',
+              'label' => 'Imię i Nazwisko',
+              'name' => 'name',
+              'type' => 'text',
+            ),
+            array(
+              'key' => 'field_team_ceo_tagline',
+              'label' => 'Tagline',
+              'name' => 'tagline',
+              'type' => 'text',
+              'default_value' => 'Founder & CEO',
+            ),
+            array(
+              'key' => 'field_team_ceo_photo',
+              'label' => 'Zdjęcie',
+              'name' => 'photo',
+              'type' => 'image',
+              'return_format' => 'id',
+              'preview_size' => 'medium',
+            ),
+            array(
+              'key' => 'field_team_ceo_initials',
+              'label' => 'Inicjały (widoczne jeśli brak zdjęcia)',
+              'name' => 'initials',
+              'type' => 'text',
+            ),
+            array(
+              'key' => 'field_team_ceo_bio',
+              'label' => 'Biogram',
+              'name' => 'bio',
+              'type' => 'textarea',
+              'rows' => 3,
+            ),
+            array(
+              'key' => 'field_team_ceo_tags',
+              'label' => 'Tagi (np. QSA, CISSP - oddzielone przecinkiem)',
+              'name' => 'tags',
+              'type' => 'text',
+            ),
+            array(
+              'key' => 'field_team_ceo_location',
+              'label' => 'Lokalizacja',
+              'name' => 'location',
+              'type' => 'text',
+            ),
+          ),
+        ),
+        array(
+          'key' => 'field_team_members',
+          'label' => 'Członkowie Zespołu',
+          'name' => 'team_members',
+          'type' => 'repeater',
+          'layout' => 'block',
+          'button_label' => 'Dodaj członka zespołu',
+          'sub_fields' => array(
+            array(
+              'key' => 'field_team_member_name',
+              'label' => 'Imię i Nazwisko',
+              'name' => 'name',
+              'type' => 'text',
+            ),
+            array(
+              'key' => 'field_team_member_photo',
+              'label' => 'Zdjęcie',
+              'name' => 'photo',
+              'type' => 'image',
+              'return_format' => 'id',
+              'preview_size' => 'medium',
+            ),
+            array(
+              'key' => 'field_team_member_initials',
+              'label' => 'Inicjały (widoczne jeśli brak zdjęcia)',
+              'name' => 'initials',
+              'type' => 'text',
+            ),
+            array(
+              'key' => 'field_team_member_role',
+              'label' => 'Rola / Doświadczenie',
+              'name' => 'role',
+              'type' => 'text',
+            ),
+            array(
+              'key' => 'field_team_member_description',
+              'label' => 'Opis',
+              'name' => 'description',
+              'type' => 'textarea',
+              'rows' => 2,
+            ),
+            array(
+              'key' => 'field_team_member_tags',
+              'label' => 'Tagi (oddzielone przecinkiem)',
+              'name' => 'tags',
+              'type' => 'text',
+            ),
+            array(
+              'key' => 'field_team_member_location',
+              'label' => 'Lokalizacja',
+              'name' => 'location',
+              'type' => 'text',
+            ),
+          ),
+        ),
+
+        // STATS SECTION
+        array(
+          'key' => 'field_team_stats_tab',
+          'label' => 'Statystyki',
+          'type' => 'tab',
+        ),
+        array(
+          'key' => 'field_team_stats_tag',
+          'label' => 'Tag Sekcji',
+          'name' => 'team_stats_tag',
+          'type' => 'text',
+          'default_value' => 'Doświadczenie',
+        ),
+        array(
+          'key' => 'field_team_stats_title',
+          'label' => 'Tytuł Sekcji',
+          'name' => 'team_stats_title',
+          'type' => 'text',
+          'default_value' => 'Nasz zespół w liczbach',
+        ),
+        array(
+          'key' => 'field_team_stats_subtitle',
+          'label' => 'Podtytuł Sekcji',
+          'name' => 'team_stats_subtitle',
+          'type' => 'textarea',
+          'rows' => 2,
+          'default_value' => 'Wieloletnie doświadczenie i zaangażowanie w bezpieczeństwo danych płatniczych i compliance przekłada się na realne rezultaty.',
+        ),
+        array(
+          'key' => 'field_team_stats_repeater',
+          'label' => 'Statystyki',
+          'name' => 'team_stats',
+          'type' => 'repeater',
+          'layout' => 'table',
+          'button_label' => 'Dodaj statystykę',
+          'sub_fields' => array(
+            array(
+              'key' => 'field_team_stat_number',
+              'label' => 'Liczba',
+              'name' => 'number',
+              'type' => 'text',
+            ),
+            array(
+              'key' => 'field_team_stat_label',
+              'label' => 'Etykieta',
+              'name' => 'label',
+              'type' => 'text',
+            ),
+          ),
+        ),
+
+        // ACCREDITATIONS
+        array(
+          'key' => 'field_team_accreditations_tab',
+          'label' => 'Akredytacje',
+          'type' => 'tab',
+        ),
+        array(
+          'key' => 'field_team_accreditations_tag',
+          'label' => 'Tag Sekcji',
+          'name' => 'team_accreditations_tag',
+          'type' => 'text',
+          'default_value' => 'Akredytacje',
+        ),
+        array(
+          'key' => 'field_team_accreditations_title',
+          'label' => 'Tytuł Sekcji',
+          'name' => 'team_accreditations_title',
+          'type' => 'text',
+          'default_value' => 'Nasze Certyfikaty i Akredytacje',
+        ),
+        array(
+          'key' => 'field_team_accreditations_subtitle',
+          'label' => 'Podtytuł Sekcji',
+          'name' => 'team_accreditations_subtitle',
+          'type' => 'textarea',
+          'rows' => 2,
+          'default_value' => 'Jedna z nielicznych firm na świecie z kompletem akredytacji <strong>PCI Security Standards Council</strong>.',
+        ),
+        array(
+          'key' => 'field_team_accreditations_groups',
+          'label' => 'Grupy Akredytacji',
+          'name' => 'team_accreditations_groups',
+          'type' => 'repeater',
+          'layout' => 'block',
+          'sub_fields' => array(
+            array(
+              'key' => 'field_team_accreditation_group_title',
+              'label' => 'Nazwa Grupy',
+              'name' => 'title',
+              'type' => 'text',
+            ),
+            array(
+              'key' => 'field_team_accreditation_items',
+              'label' => 'Elementy',
+              'name' => 'items',
+              'type' => 'repeater',
+              'layout' => 'table',
+              'sub_fields' => array(
+                array(
+                  'key' => 'field_team_accreditation_icon_text',
+                  'label' => 'Tekst Ikony (np. QSA)',
+                  'name' => 'icon_text',
+                  'type' => 'text',
+                ),
+                array(
+                  'key' => 'field_team_accreditation_icon_image',
+                  'label' => 'Zdjęcie/Logo (zamiast tekstu)',
+                  'name' => 'icon_image',
+                  'type' => 'image',
+                  'return_format' => 'id',
+                  'preview_size' => 'thumbnail',
+                ),
+                array(
+                  'key' => 'field_team_accreditation_label',
+                  'label' => 'Pełna Nazwa',
+                  'name' => 'label',
+                  'type' => 'text',
+                ),
+              ),
+            ),
+          ),
+        ),
+
+        // RECOGNITION
+        array(
+          'key' => 'field_team_recognition_tab',
+          'label' => 'Uznanie',
+          'type' => 'tab',
+        ),
+        array(
+          'key' => 'field_team_recognition_tag',
+          'label' => 'Tag Sekcji',
+          'name' => 'team_recognition_tag',
+          'type' => 'text',
+          'default_value' => 'Uznanie w branży',
+        ),
+        array(
+          'key' => 'field_team_recognition_title',
+          'label' => 'Tytuł Sekcji',
+          'name' => 'team_recognition_title',
+          'type' => 'text',
+          'default_value' => 'Nasza obecność i wpływ na rynek',
+        ),
+        array(
+          'key' => 'field_team_recognition_items',
+          'label' => 'Elementy',
+          'name' => 'team_recognition_items',
+          'type' => 'repeater',
+          'layout' => 'table',
+          'sub_fields' => array(
+            array(
+              'key' => 'field_team_recognition_icon',
+              'label' => 'Ikona',
+              'name' => 'icon',
+              'type' => 'select',
+              'choices' => array(
+                'microphone' => 'Mikrofon (Wystąpienia)',
+                'award' => 'Medal (Nagrody)',
+                'book' => 'Książka (Publikacje)',
+                'star' => 'Gwiazdka (Wyróżnienia)',
+                'briefcase' => 'Teczka (Doświadczenie)',
+                'world' => 'Globus (Zasięg)',
+                'shield-check' => 'Tarcza (Bezpieczeństwo)',
+                'circle-check' => 'Czek (Sukces)',
+                'info-circle' => 'Informacja',
+                'external-link' => 'Link zewnętrzny',
+                'mail' => 'Poczta',
+                'phone' => 'Telefon',
+              ),
+              'default_value' => 'microphone',
+              'ui' => 1,
+              'ajax' => 0,
+              'placeholder' => 'Wybierz ikonę',
+            ),
+            array(
+              'key' => 'field_team_recognition_text',
+              'label' => 'Tekst',
+              'name' => 'text',
+              'type' => 'text',
+            ),
+          ),
+        ),
+
+        // VALUES
+        array(
+          'key' => 'field_team_values_tab',
+          'label' => 'Wartości',
+          'type' => 'tab',
+        ),
+        array(
+          'key' => 'field_team_values_tag',
+          'label' => 'Tag Sekcji',
+          'name' => 'team_values_tag',
+          'type' => 'text',
+          'default_value' => 'Wartości',
+        ),
+        array(
+          'key' => 'field_team_values_title',
+          'label' => 'Tytuł Sekcji',
+          'name' => 'team_values_title',
+          'type' => 'text',
+          'default_value' => 'Jak pracujemy',
+        ),
+        array(
+          'key' => 'field_team_values_items',
+          'label' => 'Wartości',
+          'name' => 'team_values_items',
+          'type' => 'repeater',
+          'layout' => 'block',
+          'sub_fields' => array(
+            array(
+              'key' => 'field_team_values_items_image',
+              'label' => 'Zdjęcie',
+              'name' => 'value_image',
+              'type' => 'image',
+              'return_format' => 'id',
+              'preview_size' => 'thumbnail',
+            ),
+            array(
+              'key' => 'field_team_value_title',
+              'label' => 'Tytuł',
+              'name' => 'title',
+              'type' => 'text',
+            ),
+            array(
+              'key' => 'field_team_value_description',
+              'label' => 'Opis',
+              'name' => 'description',
+              'type' => 'textarea',
+              'rows' => 2,
+            ),
+          ),
+        ),
+        // CTA SECTION
+        array(
+          'key' => 'field_team_cta_tab',
+          'label' => 'CTA',
+          'type' => 'tab',
+        ),
+        array(
+          'key' => 'field_team_cta_left',
+          'label' => 'Lewa kolumna - Dla klientów',
+          'name' => 'team_cta_left',
+          'type' => 'group',
+          'layout' => 'block',
+          'sub_fields' => array(
+            array(
+              'key' => 'field_team_cta_left_badge',
+              'label' => 'Badge',
+              'name' => 'badge',
+              'type' => 'text',
+              'default_value' => 'Dla klientów',
+            ),
+            array(
+              'key' => 'field_team_cta_left_title',
+              'label' => 'Tytuł',
+              'name' => 'title',
+              'type' => 'text',
+              'default_value' => 'Chcesz pracować z naszym zespołem?',
+            ),
+            array(
+              'key' => 'field_team_cta_left_description',
+              'label' => 'Opis',
+              'name' => 'description',
+              'type' => 'textarea',
+              'rows' => 2,
+              'default_value' => 'Umów bezpłatną konsultację — odpowiemy w 24h.',
+            ),
+            array(
+              'key' => 'field_team_cta_left_button_text',
+              'label' => 'Tekst przycisku',
+              'name' => 'button_text',
+              'type' => 'text',
+              'default_value' => 'Umów konsultację',
+            ),
+            array(
+              'key' => 'field_team_cta_left_button_url',
+              'label' => 'URL przycisku',
+              'name' => 'button_url',
+              'type' => 'text',
+              'default_value' => '#contact',
+            ),
+          ),
+        ),
+        array(
+          'key' => 'field_team_cta_right',
+          'label' => 'Prawa kolumna - Dla kandydatów',
+          'name' => 'team_cta_right',
+          'type' => 'group',
+          'layout' => 'block',
+          'sub_fields' => array(
+            array(
+              'key' => 'field_team_cta_right_badge',
+              'label' => 'Badge',
+              'name' => 'badge',
+              'type' => 'text',
+              'default_value' => 'Dla kandydatów',
+            ),
+            array(
+              'key' => 'field_team_cta_right_title',
+              'label' => 'Tytuł',
+              'name' => 'title',
+              'type' => 'text',
+              'default_value' => 'Chcesz dołączyć do Patronusec?',
+            ),
+            array(
+              'key' => 'field_team_cta_right_description',
+              'label' => 'Opis',
+              'name' => 'description',
+              'type' => 'textarea',
+              'rows' => 2,
+              'default_value' => 'Szukamy QSA i ekspertów ISO/DORA. Zobacz otwarte stanowiska.',
+            ),
+            array(
+              'key' => 'field_team_cta_right_button_text',
+              'label' => 'Tekst przycisku',
+              'name' => 'button_text',
+              'type' => 'text',
+              'default_value' => 'Zobacz oferty',
+            ),
+            array(
+              'key' => 'field_team_cta_right_button_url',
+              'label' => 'URL przycisku',
+              'name' => 'button_url',
+              'type' => 'text',
+              'default_value' => '#',
+            ),
+          ),
+        ),
+      ),
+      'location' => array(
+        array(
+          array(
+            'param' => 'page_template',
+            'operator' => '==',
+            'value' => 'templates/template-team.php',
+          ),
+        ),
+      ),
+    ));
+  }
+});

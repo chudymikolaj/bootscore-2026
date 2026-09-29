@@ -1,0 +1,20 @@
+@import "../../../assets/scss/shared";
+
+.block-wysiwyg {
+  p {
+    margin-bottom: 18px;
+    line-height: 1.6;
+  }
+
+  ul, ol {
+    padding-left: 20px;
+  }
+
+  a {
+    color: var(--color-navy);
+  }
+}
+
+.block-wysiwyg__nbsp {
+  height: 0;
+}
