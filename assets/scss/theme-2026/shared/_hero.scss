@@ -1,0 +1,408 @@
+/**
+ * Component: Hero (Theme 2026)
+ * BEM Methodology, Mobile-First, 60FPS Hardware Accelerated Transitions
+ * 1:1 Figma Synchronized with HOME 1 (132:1005), HOME 2 (241:2048), L1 (133:1481), L2 (132:1032)
+ */
+
+@use '../mixins' as m;
+
+.c-hero {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--t26-color-cyber-dark, #040612);
+  color: #FFFFFF;
+  min-height: clamp(520px, 60vh, 592px);
+  display: flex;
+  align-items: center;
+  padding: clamp(3.5rem, 7vw, 6rem) 0;
+  contain: paint;
+
+  // ---------------------------------------------------------------------------
+  // Backdrop & Ambient Lighting 1:1 Figma
+  // ---------------------------------------------------------------------------
+  &__backdrop {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+  }
+
+  &__ambient-glow {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translateZ(0);
+
+    &--top {
+      top: -25%;
+      left: 50%;
+      transform: translateX(-50%) translateZ(0);
+      width: clamp(340px, 60vw, 750px);
+      height: clamp(240px, 40vw, 450px);
+      background: radial-gradient(ellipse at center, rgba(28, 55, 149, 0.35) 0%, rgba(4, 6, 18, 0) 70%);
+      filter: blur(60px);
+    }
+
+    &--accent {
+      top: 15%;
+      right: -10%;
+      width: clamp(280px, 45vw, 550px);
+      height: clamp(280px, 45vw, 550px);
+      background: radial-gradient(circle, rgba(203, 244, 0, 0.1) 0%, rgba(63, 138, 253, 0.05) 45%, rgba(4, 6, 18, 0) 70%);
+      filter: blur(70px);
+    }
+  }
+
+  // Full-width background photo with Figma 1:1 dark gradient overlay
+  &__photo-container {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    overflow: hidden;
+  }
+
+  &__photo-img {
+    width: 100%;
+    height: 100% !important;
+    object-fit: cover;
+    object-position: center right;
+    opacity: 0.65;
+  }
+
+  &__photo-gradient {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(90deg, rgba(4, 6, 18, 0.96) 0%, rgba(4, 6, 18, 0.85) 45%, rgba(4, 6, 18, 0.35) 100%),
+      linear-gradient(180deg, rgba(4, 6, 18, 0.5) 0%, transparent 30%, transparent 70%, rgba(4, 6, 18, 0.95) 100%);
+  }
+
+  // ---------------------------------------------------------------------------
+  // Layout & Content
+  // ---------------------------------------------------------------------------
+  &__container {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding-left: 24px;
+    padding-right: 24px;
+
+    @media (min-width: 768px) {
+      padding-left: 48px;
+      padding-right: 48px;
+    }
+
+    @media (min-width: 1200px) {
+      padding-left: 100px;
+      padding-right: 100px;
+    }
+  }
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    max-width: 596px;
+    gap: 32px; // 1:1 Figma (Node 132:1038 has gap: 32px)
+  }
+
+  // Category Badge (1:1 Figma 67:470 Section Badge)
+  &__category-wrapper {
+    margin: 0;
+  }
+
+  &__category {
+    @include m.badge-pill(rgba(255, 255, 255, 0.10), rgba(255, 255, 255, 0.40), #FFFFFF, 12px);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    font-weight: 400; // 1:1 Figma Regular
+  }
+
+  &__category-dot {
+    @include m.badge-dot(#3F8AFD);
+  }
+
+  // Titles Group (1:1 Figma 132:1040 hero-titles gap 8px)
+  &__titles {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+  }
+
+  // Typography - Figma 1:1
+  &__title {
+    font-family: var(--t26-font-family-sans, 'Instrument Sans', sans-serif);
+    font-size: clamp(2.25rem, 4.5vw, 3.375rem); // 54px Figma
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.0278em; // -1.5px Figma
+    color: #FFFFFF;
+    margin: 0;
+
+    strong,
+    .c-hero__highlight {
+      color: var(--t26-color-accent-lime, #CBF400);
+      font-weight: inherit;
+    }
+  }
+
+  &__subtitle {
+    font-family: var(--t26-font-family-sans, 'Instrument Sans', sans-serif);
+    font-size: clamp(1.75rem, 3.5vw, 3rem); // 48px Figma
+    font-style: italic;
+    color: var(--t26-color-pale-blue, #D5EAFF);
+    line-height: 1.2;
+    letter-spacing: -0.0208em; // -1px Figma
+    margin: 0;
+    font-weight: 500;
+  }
+
+  &__desc {
+    font-family: var(--t26-font-family-sans, 'Instrument Sans', sans-serif);
+    font-size: 1rem; // 16px Figma Body
+    color: var(--t26-color-light-grey, #E6E6E6);
+    line-height: 1.6; // 160% Figma
+    margin: 0;
+    max-width: 596px;
+  }
+
+  &__callout {
+    font-family: var(--t26-font-family-sans, 'Instrument Sans', sans-serif);
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--t26-color-accent-lime, #CBF400);
+    margin: 0;
+    font-weight: 500;
+  }
+
+  // Actions (1:1 Figma 16px gap)
+  &__actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+    margin: 0;
+
+    @media (min-width: 480px) {
+      flex-direction: row;
+      align-items: center;
+      gap: 16px;
+      width: auto;
+    }
+  }
+
+  // ===========================================================================
+  // HOME 1 SPECIFIC (Figma Node 132:1005 / 132:1009)
+  // Text positioned on the RIGHT side, raven shining on the LEFT side
+  // ===========================================================================
+  &--home-1 {
+    min-height: clamp(520px, 60vh, 592px);
+
+    @media (min-width: 992px) {
+      height: 592px;
+      min-height: 592px;
+      padding: 0;
+      display: flex;
+      align-items: center;
+
+      .c-hero__inner {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+      }
+
+      .c-hero__content {
+        margin-left: auto;
+        margin-right: 0;
+        max-width: 596px;
+        gap: 32px;
+      }
+    }
+
+    .c-hero__photo-img {
+      object-position: left center;
+      opacity: 1;
+    }
+
+    // 1:1 Figma Overlay_Right (#132:1011) - linear-gradient(-90deg, rgba(2, 11, 46, 1) 0%, rgba(2, 11, 46, 0) 100%)
+    .c-hero__photo-gradient {
+      background: linear-gradient(270deg, #020B2E 0%, rgba(2, 11, 46, 0.92) 38%, rgba(2, 11, 46, 0.35) 65%, transparent 100%);
+
+      @media (max-width: 991.98px) {
+        background: rgba(2, 11, 46, 0.90);
+      }
+    }
+
+    // 1:1 Figma 132:1017 - Instrument Sans 18px / 1.6em / #E6E6E6
+    .c-hero__desc {
+      font-size: 1.125rem; // 18px
+      line-height: 1.6;
+      color: var(--t26-color-light-grey, #E6E6E6);
+    }
+  }
+
+  // ===========================================================================
+  // HOME 2 SPECIFIC (Figma Node 241:2048 / 241:2692)
+  // Full-width centered layout with integrated Quick Stats Banner
+  // ===========================================================================
+  &--variant-2 {
+    min-height: clamp(680px, 85vh, 804px);
+    text-align: center;
+
+    .c-hero__photo-img {
+      object-position: center center;
+      opacity: 0.35;
+    }
+
+    .c-hero__photo-gradient {
+      background:
+        linear-gradient(180deg, rgba(4, 6, 18, 0.75) 0%, rgba(4, 6, 18, 0.9) 60%, #040612 100%),
+        radial-gradient(ellipse at center, rgba(63, 138, 253, 0.15) 0%, transparent 70%);
+    }
+
+    .c-hero__inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      width: 100%;
+    }
+
+    .c-hero__content {
+      align-items: center;
+      text-align: center;
+      max-width: 1240px;
+      margin: 0 auto;
+    }
+
+    .c-hero__title {
+      font-size: clamp(2.5rem, 5vw, 3.375rem);
+      text-align: center;
+    }
+
+    .c-hero__subtitle {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-style: italic;
+      color: var(--t26-color-pale-blue, #D5EAFF);
+      text-align: center;
+    }
+
+    .c-hero__desc {
+      max-width: 860px;
+      margin: 0 auto 16px;
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #FFFFFF;
+      text-align: center;
+    }
+
+    .c-hero__callout {
+      max-width: 860px;
+      margin: 0 auto 36px;
+      text-align: center;
+    }
+
+    .c-hero__actions {
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    // Quick Stats Banner 1:1 Figma 241:2711
+    .c-hero__quick-stats-banner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-top: clamp(28px, 4vw, 44px);
+      width: 100%;
+
+      @media (min-width: 640px) {
+        flex-direction: row;
+        gap: 36px;
+      }
+    }
+
+    .c-hero__quick-stat-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .c-hero__quick-stat-icon {
+      width: 14px;
+      height: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+
+      img {
+        width: 14px;
+        height: 14px;
+        display: block;
+      }
+    }
+
+    .c-hero__quick-stat-text {
+      font-family: var(--t26-font-family-sans, 'Instrument Sans', sans-serif);
+      font-size: 0.8125rem; // 13px Figma
+      font-weight: 500;
+      color: #C2C2C2;
+      line-height: 1.2;
+    }
+  }
+
+  // ===========================================================================
+  // SUBPAGES SPECIFIC (L1 / L2) - 1:1 Figma (Node 133:1481 & 132:1036)
+  // 592px height, hallway photo visible, exact 1:1 vignette & typography
+  // ===========================================================================
+  &--subpage,
+  &--l1,
+  &--l2 {
+    min-height: clamp(520px, 60vh, 592px);
+
+    @media (min-width: 992px) {
+      height: 592px;
+      min-height: 592px;
+      padding: 0;
+      display: flex;
+      align-items: center;
+    }
+
+    .c-hero__photo-img {
+      object-fit: cover;
+      object-position: center center;
+      opacity: 1;
+    }
+
+    .c-hero__photo-gradient {
+      background: linear-gradient(90deg, rgba(0, 2, 12, 0.92) 0%, rgba(0, 2, 12, 0.72) 38%, rgba(0, 2, 12, 0.2) 65%, transparent 85%);
+
+      @media (max-width: 991.98px) {
+        background: rgba(0, 2, 12, 0.88);
+      }
+    }
+
+    .c-hero__content {
+      max-width: 596px;
+      margin-left: 0;
+      gap: 32px;
+    }
+  }
+}
+

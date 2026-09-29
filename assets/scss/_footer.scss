@@ -1,0 +1,144 @@
+.bootscore-footer__container {
+  background-color: $footer-background-color-blue;
+
+  &__menu {
+    padding: clamp-calc(40px, 80px) 0 clamp-calc(60px, 120px);
+    display: grid;
+    gap: 24px;
+
+    @include respond-min(md) {
+      gap: 54px;
+      grid-template-columns: 189px auto;
+    }
+
+    @include respond-min(xl) {
+      grid-template-columns: 307px auto;
+    }
+  }
+
+  &__menu-logotype {
+    @include flex-column;
+    gap: clamp-calc(46px, 100px);
+  }
+
+  &__menu-logotype--logo {
+    filter: brightness(0) invert(1);
+  }
+
+  &__menu-logotype--menu {
+    max-width: 227px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  &__menu-logotype--menu-item:not(:last-of-type) {
+    margin: 0 0 24px;
+  }
+
+  &__menu-logotype--menu-item a {
+    font-size: clamp-calc(16px, 18px);
+    font-weight: $font-weight-700;
+    line-height: $subtitle-line-height;
+    text-decoration: none;
+    color: $font-color-white;
+  }
+
+  &__flexible {
+    @include flex-row;
+    justify-content: space-between;
+
+    @include respond-min(xl) {
+      justify-content: flex-end;
+    }
+
+    flex-wrap: wrap;
+    gap: clamp-calc(24px, 54px);
+    width: 100%;
+  }
+
+  &__flexible--menu {
+    width: 100%;
+    max-width: 189px;
+  }
+
+  &__flexible--menu-name {
+    margin: 0 0 18px;
+    font-style: normal;
+    font-weight: $font-weight-700;
+    font-size: clamp-calc(16px, 18px);
+    line-height: 180%;
+    color: $font-color-white;
+  }
+
+  &__flexible--menu-list {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  &__flexible--menu-item {
+    line-height: 170%;
+  }
+
+  &__flexible--menu-item a {
+    text-decoration: none;
+    color: $font-color-white;
+  }
+
+  &__flexible--menu-item.bolded a {
+    margin: 0 0 8px;
+    font-size: clamp-calc(16px, 18px);
+    line-height: 180%;
+    display: block;
+  }
+
+  &__flexible__list--icons {
+    @include flex-row;
+    flex-wrap: wrap;
+    gap: 7px;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__flexible__list--item {}
+
+  &__flexible__list--icon a {
+    display: inline-block;
+  }
+
+  &__flexible__list--icon div {
+    @include flex-center;
+    width: 58px;
+    height: 58px;
+    border: 1px solid $border-color-white;
+    border-radius: 6px;
+  }
+
+  &__flexible__list--icon img {
+    @include flex-center;
+    width: 25px;
+    height: 25px;
+    object-fit: contain;
+  }
+
+  .list-margin {
+    margin: 0 0 clamp-calc(16px, 36px);
+  }
+
+  .bolded {
+    font-weight: $font-weight-700;
+  }
+
+  &__info {}
+
+  &__info--copyright {
+    padding: clamp-calc(30px, 40px) 0 clamp-calc(30px, 50px);
+    border-top: 1px solid $font-color-white;
+    color: $font-color-white;
+
+    @include respond-min(md) {
+      text-align: right;
+    }
+  }
+}

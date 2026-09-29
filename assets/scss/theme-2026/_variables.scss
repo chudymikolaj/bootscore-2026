@@ -1,0 +1,138 @@
+// ==========================================================================
+// THEME 2026 - HELPER VARIABLES
+// Sass helper variables referencing tokens with breakpoint & z-index scales.
+// ==========================================================================
+
+@use 'tokens';
+
+// --------------------------------------------------------------------------
+// 1. DIRECT TOKEN REFERENCES
+// --------------------------------------------------------------------------
+
+// Colors - Figma Foundations 66:414 (9 Solid Colors)
+$deep-virgil-blue:      tokens.$color-deep-virgil-blue;
+$guardian-blue:         tokens.$color-guardian-blue;
+$guardian-pulse-blue:   tokens.$color-guardian-pulse-blue;
+$secure-horizon-blue:   tokens.$color-secure-horizon-blue;
+$clear-layer-blue:      tokens.$color-clear-layer-blue;
+$active-signal-lime:    tokens.$color-active-signal-lime;
+$medium-grey:           tokens.$color-medium-grey;
+$soft-grey:             tokens.$color-soft-grey;
+$light-grey:            tokens.$color-light-grey;
+
+// Figma Foundations 66:414 (7 Gradients)
+$gradient-indigo:       tokens.$gradient-indigo;
+$gradient-cobalt:       tokens.$gradient-cobalt;
+$gradient-ultramarine:  tokens.$gradient-ultramarine;
+$gradient-glacier:      tokens.$gradient-glacier;
+$gradient-aurora:       tokens.$gradient-aurora;
+$gradient-citron:       tokens.$gradient-citron;
+$gradient-silver:       tokens.$gradient-silver;
+
+// Base & Aliases
+$cyber-dark:            tokens.$color-cyber-dark;
+$card-dark:             tokens.$color-card-dark;
+$card-dark-hover:       tokens.$color-card-dark-hover;
+$card-light:            tokens.$color-card-light;
+$card-light-hover:      tokens.$color-card-light-hover;
+$bg-light:              tokens.$color-bg-light;
+
+$accent-lime:           tokens.$color-accent-lime;
+$accent-lime-hover:     tokens.$color-accent-lime-hover;
+$accent-lime-rgb:       tokens.$color-accent-lime-rgb;
+$accent-cyan:           tokens.$color-accent-cyan;
+$accent-cyan-rgb:       tokens.$color-accent-cyan-rgb;
+
+$text-white:            tokens.$color-text-white;
+$text-light:            tokens.$color-text-light;
+$text-muted-dark:       tokens.$color-text-muted-dark;
+$text-dark:             tokens.$color-text-dark;
+$text-muted-light:      tokens.$color-text-muted-light;
+
+$border-dark:           tokens.$color-border-dark;
+$border-dark-highlight: tokens.$color-border-dark-highlight;
+$border-light:          tokens.$color-border-light;
+
+// Typography
+$font-hero:             tokens.$font-hero;
+$font-h2:               tokens.$font-h2;
+$font-h3:               tokens.$font-h3;
+$font-body:             tokens.$font-body;
+$font-small:            tokens.$font-small;
+$font-badge:            tokens.$font-badge;
+$font-stat:             tokens.$font-stat;
+$letter-spacing-badge:  tokens.$letter-spacing-badge;
+
+// 4px Grid Spacing
+$space-4:               tokens.$space-4;
+$space-8:               tokens.$space-8;
+$space-12:              tokens.$space-12;
+$space-16:              tokens.$space-16;
+$space-20:              tokens.$space-20;
+$space-24:              tokens.$space-24;
+$space-32:              tokens.$space-32;
+$space-40:              tokens.$space-40;
+$space-48:              tokens.$space-48;
+$space-64:              tokens.$space-64;
+$space-80:              tokens.$space-80;
+$space-96:              tokens.$space-96;
+
+// Layout
+$section-py:            tokens.$section-py;
+$container-max:         tokens.$container-max;
+
+// Radii
+$radius-sm:             tokens.$radius-sm;
+$radius-md:             tokens.$radius-md;
+$radius-lg:             tokens.$radius-lg;
+$radius-xl:             tokens.$radius-xl;
+$radius-pill:           tokens.$radius-pill;
+
+// Glassmorphism
+$glass-bg-dark:         tokens.$glass-bg-dark;
+$glass-blur:            tokens.$glass-blur;
+$glass-bg-light:        tokens.$glass-bg-light;
+
+// Motion
+$ease-default:          tokens.$ease-default;
+$ease-out:              tokens.$ease-out;
+$ease-in:               tokens.$ease-in;
+$ease-bounce:           tokens.$ease-bounce;
+$duration-fast:         tokens.$duration-fast;
+$duration-normal:       tokens.$duration-normal;
+$duration-slow:         tokens.$duration-slow;
+
+// --------------------------------------------------------------------------
+// 2. BREAKPOINTS (Mobile-First)
+// --------------------------------------------------------------------------
+
+$breakpoint-xs:  0;
+$breakpoint-sm:  576px;
+$breakpoint-md:  768px;
+$breakpoint-lg:  992px;
+$breakpoint-xl:  1200px;
+$breakpoint-xxl: 1400px;
+
+$breakpoints: (
+  'xs':  $breakpoint-xs,
+  'sm':  $breakpoint-sm,
+  'md':  $breakpoint-md,
+  'lg':  $breakpoint-lg,
+  'xl':  $breakpoint-xl,
+  'xxl': $breakpoint-xxl,
+);
+
+// --------------------------------------------------------------------------
+// 3. Z-INDEX SYSTEM
+// --------------------------------------------------------------------------
+
+$z-below:    -1;
+$z-base:     0;
+$z-elevate:  1;
+$z-badge:    10;
+$z-sticky:   100;
+$z-nav:      1000;
+$z-backdrop: 1040;
+$z-modal:    1050;
+$z-toast:    1060;
+$z-tooltip:  1070;

@@ -1,0 +1,50 @@
+/*!
+ * Bootscore custom styles
+ */
+
+// Add your own code here!
+// Because this file is compiled after Bootstrap, you're also able to use Bootstrap mixins for better code.
+// Some examples can be found here: https://bootscore.me/documentation/bootstrap-css-sass
+
+@import "font-faces.scss";
+@import "mixins.scss";
+@import "root.scss";
+@import "global.scss";
+@import "header.scss";
+@import "blog.scss";
+@import "blogSingle";
+@import "footer.scss";
+
+// components
+@import "../../components/ShowcaseIntroSection/showcaseInitialSection.scss";
+@import "../../components/ShowcaseNewsletterSection/showcaseNewsletterSection.scss";
+@import "../../components/BenefitsElementInWhiteSquare/benefitsElementInWhiteSquare.scss";
+@import "../../components/HowCanWeHelpTilesButton/howCanWeHelpTilesButton.scss";
+@import "../../components/OurOfferTiles/ourOfferTiles.scss";
+@import "../../components/WhyUsSection/whyUsSection.scss";
+@import "../../components/HowCanWeHelpText/howCanWeHelpText.scss";
+@import "../../components/HowWillWeWorkWithYou/howWillWeWorkWithYou.scss";
+@import "../../components/CertificationAudit/certificationAudit.scss";
+@import "../../components/OurValues/ourValues.scss";
+@import "../../components/SectionNewsletterBanner/sectionNewsletterBanner.scss";
+@import "../../components/SectionFaq/sectionFaq.scss";
+@import "../../components/GlobalExperience/globalExperience.scss";
+
+// team
+@import "../../components/TeamHero/teamHero.scss";
+@import "../../components/TeamGrid/teamGrid.scss";
+@import "../../components/TeamStats/teamStats.scss";
+@import "../../components/TeamAccreditations/teamAccreditations.scss";
+@import "../../components/TeamRecognition/teamRecognition.scss";
+@import "../../components/TeamValues/teamValues.scss";
+@import "../../components/TeamCTA/teamCTA.scss";
+
+// modules
+@import "../../components/modules/StatisticsNumbersModule/statisticsNumbersModule.scss";
+@import "../../components/modules/OpinionCarouselModule/opinionCarouselModule.scss";
+@import "../../components/modules/FreeConsultationModule/freeConsultationModule.scss";
+@import "../../components/modules/OurCompetencesLogotypeWall/ourCompetencesLogotypeWall.scss";
+@import "../../components/modules/ContactFormModule/contactFormModule.scss";
+@import "../../components/modules/ContactFormShowcaseModule/contactFormModule.scss";
+
+

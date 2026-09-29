@@ -1,0 +1,281 @@
+// ==========================================================================
+// THEME 2026 - L2 CASE OUTCOMES
+// 2-Column Split Layout matching Figma 313:3662.
+// ==========================================================================
+
+@use '../tokens' as tokens;
+@use '../variables' as v;
+@use '../mixins' as mixins;
+
+.c-l2-case-outcomes {
+  position: relative;
+  background-color: #F8FAFC;
+  padding-block: 48px;
+  overflow: hidden;
+  isolation: isolate;
+  @include mixins.font-smoothing;
+
+  // Background SVG vector matching Figma 313:3664
+  &__vector {
+    position: absolute;
+    top: -50px;
+    right: calc(50% - 720px + 81px);
+    width: 318px;
+    height: 700px;
+    pointer-events: none;
+    z-index: 0;
+
+    svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    @media (max-width: 1440px) {
+      right: max(-30px, calc(50% - 639px));
+    }
+
+    @media (max-width: 991px) {
+      right: -60px;
+      top: 0;
+      width: 220px;
+      height: 480px;
+      opacity: 0.6;
+    }
+  }
+
+  @media (min-width: 768px) {
+    padding-block: 64px;
+  }
+
+  @media (min-width: 1200px) {
+    padding-block: 96px;
+  }
+
+  &__container {
+    width: 100%;
+    max-width: 1240px;
+    margin-inline: auto;
+    padding-inline: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+    position: relative;
+    z-index: 1;
+
+    @media (min-width: 768px) {
+      padding-inline: 24px;
+    }
+
+    @media (min-width: 1280px) {
+      padding-inline: 0;
+    }
+  }
+
+  &__badge-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    margin: 0;
+  }
+
+  &__badge {
+    margin: 0;
+  }
+
+  // 2-Column split layout (1240px)
+  &__layout {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+
+    @media (min-width: 1024px) {
+      display: grid;
+      grid-template-columns: 536px 640px;
+      gap: 64px;
+      align-items: start;
+      justify-content: space-between;
+    }
+  }
+
+  // Left Content (536px wide in Figma)
+  &__left {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    max-width: 536px;
+    text-align: left;
+  }
+
+  &__title {
+    font-family: var(--t26-font-family-sans, 'Instrument Sans', sans-serif);
+    font-size: clamp(2rem, 3.75vw, 3.375rem); // 54px in Figma
+    font-weight: 700;
+    line-height: 1.22; // 66px
+    letter-spacing: -0.0278em; // -1.5px in Figma
+    color: #0F172A;
+    margin: 0;
+    text-align: left;
+  }
+
+  &__lead {
+    font-family: var(--t26-font-family-sans, 'Instrument Sans', sans-serif);
+    font-size: 1rem; // 16px in Figma
+    font-weight: 400;
+    line-height: 1.6; // 25.6px in Figma
+    color: #64748B;
+    margin: 0;
+    text-align: left;
+  }
+
+  // Right Outcomes Card (640x383px in Figma)
+  &__card {
+    background: #FFFFFF;
+    border: 1px solid #E2E8F0;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: none;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    max-width: 640px;
+    width: 100%;
+    margin-inline: auto;
+
+    @media (min-width: 768px) {
+      padding: 40px;
+    }
+
+    @media (min-width: 1024px) {
+      margin-inline: 0;
+    }
+  }
+
+  // 2-col Metadata Grid (560px wide, 2 cols of 268px, gap 24px)
+  &__meta-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+
+    @media (min-width: 576px) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+    }
+  }
+
+  &__meta-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    text-align: left;
+  }
+
+  &__meta-icon-container {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background-color: #EFF6FF;
+    color: #3F8AFD;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+
+    svg {
+      width: 16px;
+      height: 16px;
+      stroke: #3F8AFD;
+    }
+  }
+
+  &__meta-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    text-align: left;
+  }
+
+  &__meta-label {
+    font-family: var(--t26-font-family-sans, 'Instrument Sans', sans-serif);
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 13.42px;
+    text-transform: uppercase;
+    letter-spacing: 0.0909em; // 1px in Figma
+    color: #3B82F6;
+    text-align: left;
+  }
+
+  &__meta-val {
+    font-family: var(--t26-font-family-sans, 'Instrument Sans', sans-serif);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 17.08px;
+    color: #0F172A;
+    text-align: left;
+  }
+
+  // Divider Line (560px x 1px)
+  &__divider {
+    height: 1px;
+    background-color: #E2E8F0;
+    margin: 0;
+    width: 100%;
+  }
+
+  // Quote Block (560px x 91px)
+  &__quote-block {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    text-align: left;
+  }
+
+  &__quote-icon {
+    display: flex;
+    align-items: center;
+    width: 20px;
+    height: 20px;
+    color: #3F8AFD;
+
+    svg {
+      width: 20px;
+      height: 20px;
+      stroke: #3F8AFD;
+    }
+  }
+
+  &__quote-content {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    text-align: left;
+  }
+
+  &__quote-text {
+    font-family: var(--t26-font-family-sans, 'Instrument Sans', sans-serif);
+    font-size: 15px;
+    font-style: italic; // Figma 313:3719 is Italic
+    font-weight: 400;
+    line-height: 24px;
+    color: #475569;
+    margin: 0;
+    text-align: left;
+  }
+
+  &__quote-attribution {
+    font-family: var(--t26-font-family-sans, 'Instrument Sans', sans-serif);
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 14.64px;
+    text-transform: uppercase;
+    letter-spacing: 0.0833em; // 1px in Figma
+    color: #3F8AFD;
+    font-style: normal;
+    text-align: left;
+  }
+}

@@ -1,0 +1,235 @@
+// ==========================================================================
+// THEME 2026 - MIXINS & UTILITIES
+// Performance-first 60FPS mixins, glassmorphism, responsive breakpoints.
+// ==========================================================================
+
+@use 'variables' as v;
+@use 'sass:math';
+@use 'sass:list';
+
+/// Helper function clamp-calc for fluid typography & spacing
+@function clamp-calc(
+  $size-at-min-width,
+  $size-at-max-width,
+  $min-width: 375px,
+  $max-width: 1440px
+) {
+  $slope: math.div($size-at-max-width - $size-at-min-width, $max-width - $min-width);
+  $y-axis-intersection: -$min-width * $slope + $size-at-min-width;
+  @return clamp(#{$size-at-min-width}, #{$y-axis-intersection} + #{$slope * 100vw}, #{$size-at-max-width});
+}
+
+/// Alias for mq (respond-min)
+@mixin respond-min($breakpoint) {
+  @include mq($breakpoint) {
+    @content;
+  }
+}
+
+// --------------------------------------------------------------------------
+// 1. HARDWARE ACCELERATION & 60FPS RENDERING
+// --------------------------------------------------------------------------
+
+/// Forces GPU compositing without layout thrashing
+@mixin gpu-accelerate {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/// 60FPS Hardware accelerated transition helper for transform & opacity only
+@mixin transition-60fps(
+  $properties: (transform, opacity),
+  $duration: var(--t26-duration-normal, 250ms),
+  $easing: var(--t26-ease, cubic-bezier(0.4, 0, 0.2, 1))
+) {
+  $transitions: ();
+  @each $prop in $properties {
+    $transitions: list.append($transitions, #{$prop} #{$duration} #{$easing}, comma);
+  }
+  transition: $transitions;
+}
+
+// --------------------------------------------------------------------------
+// 2. GLASSMORPHISM
+// --------------------------------------------------------------------------
+
+/// Dark glassmorphic background with blur and subtle border
+@mixin glassmorphism(
+  $bg: var(--t26-glass-bg-dark, rgba(12, 16, 28, 0.75)),
+  $blur: var(--t26-glass-blur, 16px),
+  $border: var(--t26-color-border-dark, rgba(255, 255, 255, 0.08))
+) {
+  background: $bg;
+  backdrop-filter: blur($blur);
+  -webkit-backdrop-filter: blur($blur);
+  border: 1px solid $border;
+}
+
+/// Light glassmorphic variant
+@mixin glass-light(
+  $bg: var(--t26-glass-bg-light, rgba(255, 255, 255, 0.85)),
+  $blur: var(--t26-glass-blur, 16px),
+  $border: var(--t26-color-border-light, rgba(15, 23, 42, 0.08))
+) {
+  background: $bg;
+  backdrop-filter: blur($blur);
+  -webkit-backdrop-filter: blur($blur);
+  border: 1px solid $border;
+}
+
+/// Full glass card styling with rounded corners and GPU acceleration
+@mixin glass-card(
+  $bg: var(--t26-glass-bg-dark, rgba(12, 16, 28, 0.75)),
+  $blur: var(--t26-glass-blur, 16px),
+  $border: var(--t26-color-border-dark, rgba(255, 255, 255, 0.08)),
+  $radius: var(--t26-radius-lg, 16px)
+) {
+  @include glassmorphism($bg, $blur, $border);
+  @include gpu-accelerate;
+  border-radius: $radius;
+}
+
+// --------------------------------------------------------------------------
+// 3. ACCESSIBILITY & FOCUS STATES
+// --------------------------------------------------------------------------
+
+/// WCAG-compliant high-contrast visible focus ring
+@mixin focus-ring($color: var(--t26-color-accent-lime, #CBF400), $offset: 2px) {
+  &:focus-visible {
+    outline: 2px solid $color;
+    outline-offset: $offset;
+  }
+
+  &:focus:not(:focus-visible) {
+    outline: none;
+  }
+}
+
+// --------------------------------------------------------------------------
+// 4. TYPOGRAPHY & SMOOTHING
+// --------------------------------------------------------------------------
+
+/// Anti-aliased font smoothing for crisp text rendering on dark themes
+@mixin font-smoothing {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/// Single-line truncation with ellipsis
+@mixin text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/// Multi-line clamp with ellipsis
+@mixin line-clamp($lines: 2) {
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+// --------------------------------------------------------------------------
+// 5. RESPONSIVE BREAKPOINTS (Mobile-First)
+// --------------------------------------------------------------------------
+
+/// Min-width media query helper
+@mixin mq($breakpoint) {
+  @if $breakpoint == 'sm' {
+    @media (min-width: #{v.$breakpoint-sm}) { @content; }
+  } @else if $breakpoint == 'md' {
+    @media (min-width: #{v.$breakpoint-md}) { @content; }
+  } @else if $breakpoint == 'lg' {
+    @media (min-width: #{v.$breakpoint-lg}) { @content; }
+  } @else if $breakpoint == 'xl' {
+    @media (min-width: #{v.$breakpoint-xl}) { @content; }
+  } @else if $breakpoint == 'xxl' {
+    @media (min-width: #{v.$breakpoint-xxl}) { @content; }
+  } @else {
+    @media (min-width: $breakpoint) { @content; }
+  }
+}
+
+/// Max-width media query helper (for graceful degradation exceptions only)
+@mixin mq-down($breakpoint) {
+  @if $breakpoint == 'sm' {
+    @media (max-width: #{v.$breakpoint-sm - 0.02px}) { @content; }
+  } @else if $breakpoint == 'md' {
+    @media (max-width: #{v.$breakpoint-md - 0.02px}) { @content; }
+  } @else if $breakpoint == 'lg' {
+    @media (max-width: #{v.$breakpoint-lg - 0.02px}) { @content; }
+  } @else if $breakpoint == 'xl' {
+    @media (max-width: #{v.$breakpoint-xl - 0.02px}) { @content; }
+  } @else {
+    @media (max-width: $breakpoint) { @content; }
+  }
+}
+
+// --------------------------------------------------------------------------
+// 6. VISUAL EFFECTS
+// --------------------------------------------------------------------------
+
+/// Cyberpunk / Neon Glow shadow
+@mixin neon-glow($color: rgba(203, 244, 0, 0.35), $size: 20px) {
+  box-shadow: 0 0 $size $color;
+}
+
+/// Flexbox alignment helpers
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+// --------------------------------------------------------------------------
+// 7. BADGES & PILLS (1:1 Figma)
+// --------------------------------------------------------------------------
+
+@mixin badge-pill(
+  $bg: rgba(255, 255, 255, 0.04),
+  $border: rgba(255, 255, 255, 0.12),
+  $color: #9FC7F0,
+  $font-size: 11px
+) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  white-space: nowrap;
+  gap: 6px;
+  padding: 6px 14px;
+  background: $bg;
+  border: 1px solid $border;
+  border-radius: 999px;
+  font-family: var(--t26-font-family-sans, 'Instrument Sans', sans-serif);
+  font-size: $font-size;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: $color;
+}
+
+@mixin badge-dot($bg: #3F8AFD) {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: $bg;
+  display: inline-block;
+  flex-shrink: 0;
+}
+

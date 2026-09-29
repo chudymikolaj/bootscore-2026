@@ -1,0 +1,356 @@
+// ==========================================================================
+// THEME 2026 - SHARED FAQ ACCORDION COMPONENT
+// Semantic WAI-ARIA accordion, CSS Grid 0fr -> 1fr smooth expand, rotating plus/cross.
+// ==========================================================================
+
+@use '../variables' as v;
+@use '../mixins' as m;
+
+.c-faq {
+  position: relative;
+  width: 100%;
+  padding-block: clamp(3.5rem, 6vw, 6.5rem);
+  padding-inline: 0;
+  isolation: isolate;
+  @include m.font-smoothing;
+
+  // ------------------------------------------------------------------------
+  // Layout Container
+  // ------------------------------------------------------------------------
+  &__container {
+    width: 100%;
+    margin-inline: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  // ------------------------------------------------------------------------
+  // Section Header
+  // ------------------------------------------------------------------------
+  &__header {
+    text-align: center;
+    max-width: 760px;
+    margin-bottom: clamp(2.5rem, 5vw, 4rem);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__badge {
+    margin-bottom: 1rem;
+  }
+
+  &__title {
+    margin-bottom: 1rem;
+  }
+
+  &__subtitle {
+    font-size: var(--t26-font-body, 1rem);
+    line-height: 1.6;
+    margin: 0;
+    max-width: 600px;
+  }
+
+  // ------------------------------------------------------------------------
+  // FAQ List (Figma 132:1173 accordions-container W: 800px)
+  // ------------------------------------------------------------------------
+  &__list {
+    width: 100%;
+    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  // ------------------------------------------------------------------------
+  // Accordion Item
+  // ------------------------------------------------------------------------
+  &__item {
+    position: relative;
+    border-radius: var(--t26-radius-lg, 16px);
+    transition:
+      border-color var(--t26-duration-fast, 150ms) ease,
+      background-color var(--t26-duration-fast, 150ms) ease,
+      box-shadow var(--t26-duration-fast, 150ms) ease;
+    @include m.gpu-accelerate;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  // ------------------------------------------------------------------------
+  // Heading & Trigger Button
+  // ------------------------------------------------------------------------
+  &__question {
+    margin: 0;
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+  }
+
+  &__trigger {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: clamp(1.125rem, 2.5vw, 1.5rem) clamp(1.25rem, 3vw, 1.75rem);
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: clamp(1rem, 1.2vw + 0.5rem, 1.1875rem);
+    font-weight: 600;
+    line-height: 1.35;
+    text-align: left;
+    border-radius: var(--t26-radius-lg, 16px);
+    @include m.focus-ring;
+
+    &:active {
+      transform: scale(0.995);
+    }
+  }
+
+  &__question-text {
+    flex: 1 1 auto;
+  }
+
+  &__icon-wrapper {
+    flex: 0 0 32px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition:
+      transform var(--t26-duration-normal, 250ms) cubic-bezier(0.4, 0, 0.2, 1),
+      background-color var(--t26-duration-fast, 150ms) ease,
+      color var(--t26-duration-fast, 150ms) ease;
+    @include m.gpu-accelerate;
+  }
+
+  &__icon {
+    width: 18px;
+    height: 18px;
+    display: block;
+  }
+
+  // ------------------------------------------------------------------------
+  // Accordion Content (CSS Grid 0fr -> 1fr animation)
+  // ------------------------------------------------------------------------
+  &__content {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows var(--t26-duration-normal, 250ms) cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  &__content-inner {
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  &__answer {
+    padding-inline: clamp(1.25rem, 3vw, 1.75rem);
+    padding-bottom: clamp(1.125rem, 2.5vw, 1.5rem);
+    padding-top: 0.25rem;
+    font-size: 0.9375rem;
+    line-height: 1.65;
+
+    p {
+      margin-bottom: 0.75rem;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    ul, ol {
+      margin-top: 0.5rem;
+      margin-bottom: 0.75rem;
+      padding-left: 1.25rem;
+    }
+
+    li {
+      margin-bottom: 0.25rem;
+    }
+  }
+
+  // ------------------------------------------------------------------------
+  // State: Open (Both .is-open class and aria-expanded="true")
+  // ------------------------------------------------------------------------
+  &__item.is-open,
+  &__item:has(.c-faq__trigger[aria-expanded="true"]) {
+    .c-faq__content {
+      grid-template-rows: 1fr;
+    }
+
+    .c-faq__icon-wrapper {
+      transform: rotate(45deg);
+    }
+  }
+
+  // ------------------------------------------------------------------------
+  // Theme Variants
+  // ------------------------------------------------------------------------
+
+  // Dark Theme (Default)
+  &--dark {
+    background-color: var(--t26-color-cyber-dark, #040612);
+
+    .c-faq__subtitle {
+      color: var(--t26-color-text-muted-dark, #94A3B8);
+    }
+
+    .c-faq__item {
+      background: var(--t26-color-card-dark, #0C1124);
+      border: 1px solid var(--t26-color-border-dark, rgba(255, 255, 255, 0.08));
+
+      &:hover {
+        border-color: rgba(255, 255, 255, 0.16);
+      }
+
+      &.is-open,
+      &:has(.c-faq__trigger[aria-expanded="true"]) {
+        border-color: var(--t26-color-border-dark-highlight, rgba(203, 244, 0, 0.3));
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      }
+    }
+
+    .c-faq__trigger {
+      color: var(--t26-color-text-white, #FFFFFF);
+
+      &:hover .c-faq__question-text {
+        color: var(--t26-color-accent-lime, #CBF400);
+      }
+    }
+
+    .c-faq__icon-wrapper {
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--t26-color-accent-lime, #CBF400);
+    }
+
+    .c-faq__item.is-open .c-faq__icon-wrapper,
+    .c-faq__item:has(.c-faq__trigger[aria-expanded="true"]) .c-faq__icon-wrapper {
+      background: rgba(203, 244, 0, 0.15);
+      color: var(--t26-color-accent-lime, #CBF400);
+    }
+
+    .c-faq__answer {
+      color: var(--t26-color-text-light, #E6E6E6);
+    }
+  }
+
+  // Light Theme 1:1 Figma (Node 133:1618)
+  &--light {
+    background-color: #F8FAFC;
+    padding-top: clamp(48px, 6vw, 80px);
+    padding-bottom: clamp(64px, 7vw, 96px);
+    padding-inline: clamp(20px, 4vw, 48px);
+
+    .c-faq__header {
+      margin-bottom: 48px;
+    }
+
+    .c-faq__badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: 0; // 1:1 Figma (Node 133:1620 sharp rectangle)
+      background: rgba(4, 6, 18, 0.04);
+      border: 1px solid rgba(4, 6, 18, 0.08);
+      font-family: var(--t26-font-family-sans, 'Instrument Sans', sans-serif);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.136em; // 1.5px
+      text-transform: uppercase;
+      color: #858585;
+      margin-bottom: 16px;
+
+      .c-badge__dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background-color: #3F8AFD;
+      }
+    }
+
+    .c-faq__title {
+      font-family: var(--t26-font-family-sans, 'Instrument Sans', sans-serif);
+      font-size: clamp(1.75rem, 2.5vw, 2.25rem); // 36px w Figma
+      font-weight: 700;
+      line-height: 1.22; // 44px
+      color: #0F172A;
+      margin-bottom: 0;
+    }
+
+    .c-faq__subtitle {
+      color: #64748B;
+    }
+
+    .c-faq__list {
+      max-width: 800px;
+      gap: 12px;
+    }
+
+    .c-faq__item {
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: 0; // 1:1 Figma (Node 133:1623 has cornerRadius: 0 - sharp rectangle)
+      box-shadow: none; // 1:1 Figma effects: []
+
+      &:hover {
+        border-color: #CBD5E1;
+      }
+
+      &.is-open,
+      &:has(.c-faq__trigger[aria-expanded="true"]) {
+        border-color: rgba(63, 138, 253, 0.4);
+        box-shadow: 0 4px 16px rgba(15, 23, 42, 0.06);
+      }
+    }
+
+    .c-faq__trigger {
+      padding: 20px;
+      border-radius: 0;
+      color: #0F172A;
+      font-family: var(--t26-font-family-sans, 'Instrument Sans', sans-serif);
+      font-size: 1rem; // 16px w Figma
+      font-weight: 600;
+      line-height: 1.25; // 20px
+      letter-spacing: 0;
+
+      &:hover .c-faq__question-text {
+        color: #3F8AFD;
+      }
+    }
+
+    .c-faq__icon-wrapper {
+      flex: 0 0 24px;
+      width: 24px;
+      height: 24px;
+      border-radius: 0; // 1:1 Figma (Node 133:1625 is 24x24 sharp)
+      background: #F8FAFC;
+      color: #3F8AFD;
+    }
+
+    .c-faq__icon {
+      width: 14px;
+      height: 14px;
+    }
+
+    .c-faq__item.is-open .c-faq__icon-wrapper,
+    .c-faq__item:has(.c-faq__trigger[aria-expanded="true"]) .c-faq__icon-wrapper {
+      background: rgba(63, 138, 253, 0.1);
+      color: #3F8AFD;
+    }
+
+    .c-faq__answer {
+      padding: 0 20px 20px 20px;
+      color: #475569;
+    }
+  }
+}

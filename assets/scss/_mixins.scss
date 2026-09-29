@@ -1,0 +1,71 @@
+// Mixin for min-width breakpoints
+@mixin respond-min($breakpoint) {
+  $breakpoint-value: map-get($breakpoints, $breakpoint);
+
+  @if $breakpoint-value !=null {
+    @media (min-width: #{$breakpoint-value}) {
+      @content;
+    }
+  }
+
+  @else {
+    @warn "Breakpoint #{$breakpoint} not found in $breakpoints map.";
+  }
+}
+
+// Mixin for max-width breakpoints
+@mixin respond-max($breakpoint) {
+  $breakpoint-value: map-get($breakpoints, $breakpoint);
+
+  @if $breakpoint-value !=null {
+    @media (max-width: #{$breakpoint-value - 1px}) {
+      @content;
+    }
+  }
+
+  @else {
+    @warn "Breakpoint #{$breakpoint} not found in $breakpoints map.";
+  }
+}
+
+// Mixin for range breakpoints
+@mixin respond-between($min-breakpoint, $max-breakpoint) {
+  $min-value: map-get($breakpoints, $min-breakpoint);
+  $max-value: map-get($breakpoints, $max-breakpoint);
+
+  @if $min-value !=null and $max-value !=null {
+    @media (min-width: #{$min-value}) and (max-width: #{$max-value - 1px}) {
+      @content;
+    }
+  }
+
+  @else {
+    @warn "One or both breakpoints #{$min-breakpoint}, #{$max-breakpoint} not found in $breakpoints map.";
+  }
+}
+
+@function clamp-calc($size-at-min-width,
+  $size-at-max-width,
+  $min-width: 320px,
+  $max-width: 1440px) {
+
+  // Ensure $min-width and $max-width are valid
+  @if $max-width ==$min-width {
+    @error "The maximum width cannot be equal to the minimum width.";
+  }
+
+  // Add default units to `0` if necessary
+  @if $size-at-min-width == 0 { $size-at-min-width: 0px; }
+  @if $size-at-max-width == 0 { $size-at-max-width: 0px; }
+
+  // Calculate the slope (rate of change per viewport width unit)
+  $slope: ($size-at-max-width - $size-at-min-width) / ($max-width - $min-width);
+
+// Calculate the y-intercept (base value for the linear equation)
+$y-intercept: $size-at-min-width - ($slope * $min-width);
+
+// Return the clamp() function with proper interpolation
+@return clamp(min(#{$size-at-min-width}, #{$size-at-max-width}),
+  calc(#{$y-intercept} + #{$slope} * 100vw),
+  max(#{$size-at-min-width}, #{$size-at-max-width}));
+}

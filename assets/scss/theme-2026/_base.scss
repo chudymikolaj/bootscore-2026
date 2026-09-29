@@ -1,0 +1,419 @@
+// ==========================================================================
+// THEME 2026 - BASE & RESETS
+// Scoped styles, layout containers, buttons, badges, typography resets.
+// ==========================================================================
+
+@use 'tokens' as tokens;
+@use 'variables' as v;
+@use 'mixins' as mixins;
+
+// --------------------------------------------------------------------------
+// 1. BASE SCOPED RESET (.theme-2026-page)
+// --------------------------------------------------------------------------
+
+.theme-2026-page {
+  box-sizing: border-box;
+  background-color: var(--t26-color-cyber-dark, #040612);
+  color: var(--t26-color-text-light, #E6E6E6);
+  font-family: var(--t26-font-family-sans, 'Instrument Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif);
+  line-height: 1.5;
+  min-height: 100vh;
+  overflow-x: hidden;
+  @include mixins.font-smoothing;
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: inherit;
+  }
+
+  // Margin reset on headings to avoid unexpected browser spacing
+  :where(h1, h2, h3, h4, h5, h6) {
+    margin-top: 0;
+    margin-bottom: 0;
+    color: inherit;
+    font-weight: 700;
+    line-height: 1.15;
+  }
+
+  :where(p) {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    color: inherit;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  :where(a) {
+    color: inherit;
+    text-decoration: none;
+    @include mixins.focus-ring;
+  }
+
+  img,
+  svg {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+// --------------------------------------------------------------------------
+// 2. LAYOUT CONTAINERS & SECTIONS
+// --------------------------------------------------------------------------
+
+.c-container {
+  width: 100%;
+  max-width: var(--t26-container-max, 1240px);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 24px;
+  padding-right: 24px;
+
+  @include mixins.mq('md') {
+    padding-left: 48px;
+    padding-right: 48px;
+  }
+
+  @include mixins.mq('xl') {
+    padding-left: 100px;
+    padding-right: 100px;
+    max-width: 1440px;
+  }
+}
+
+.c-section {
+  position: relative;
+  width: 100%;
+  padding-top: var(--t26-section-py, clamp(5rem, 7vw, 6rem));
+  padding-bottom: var(--t26-section-py, clamp(5rem, 7vw, 6rem));
+}
+
+// --------------------------------------------------------------------------
+// 3. FLUID TYPOGRAPHY CLASSES
+// --------------------------------------------------------------------------
+
+.c-hero-title,
+h1.c-hero-title {
+  font-family: var(--t26-font-family-sans, 'Instrument Sans', sans-serif);
+  font-size: var(--t26-font-hero, clamp(2.25rem, 5vw + 0.5rem, 3.375rem));
+  line-height: 1.22;
+  letter-spacing: -1.5px;
+  font-weight: 700;
+  color: inherit;
+}
+
+.c-h2,
+h2.c-h2 {
+  font-family: var(--t26-font-family-sans, 'Instrument Sans', sans-serif);
+  font-size: var(--t26-font-h2, clamp(1.75rem, 3vw + 0.25rem, 2.25rem));
+  line-height: 1.22;
+  letter-spacing: -0.5px;
+  font-weight: 700;
+  color: inherit;
+}
+
+.c-h3,
+h3.c-h3 {
+  font-family: var(--t26-font-family-sans, 'Instrument Sans', sans-serif);
+  font-size: var(--t26-font-h3, clamp(1.25rem, 1.5vw + 0.25rem, 1.5rem));
+  line-height: 1.25;
+  font-weight: 700;
+  color: inherit;
+}
+
+.c-text-body {
+  font-family: var(--t26-font-family-sans, 'Instrument Sans', sans-serif);
+  font-size: var(--t26-font-body, 1rem);
+  line-height: 1.6;
+  color: inherit;
+}
+
+.c-text-small {
+  font-family: var(--t26-font-family-sans, 'Instrument Sans', sans-serif);
+  font-size: var(--t26-font-small, 0.875rem);
+  line-height: 1.5;
+  color: inherit;
+}
+
+.c-stat-number {
+  font-family: var(--t26-font-family-sans, 'Instrument Sans', sans-serif);
+  font-size: var(--t26-font-stat, clamp(2rem, 3.5vw, 2.5rem));
+  font-weight: 700;
+  line-height: 1.22;
+  letter-spacing: 0;
+  color: var(--t26-color-text-white, #FFFFFF);
+}
+
+// --------------------------------------------------------------------------
+// 4. BADGES (.c-badge - pill uppercase)
+// --------------------------------------------------------------------------
+
+.c-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 0.375rem;
+  padding: 0.375rem 0.875rem;
+  font-family: var(--t26-font-family-sans, 'Instrument Sans', sans-serif);
+  font-size: var(--t26-font-badge, 0.6875rem);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: var(--t26-letter-spacing-badge, 1.5px);
+  border-radius: var(--t26-radius-pill, 9999px);
+  line-height: 1;
+  white-space: nowrap;
+  vertical-align: middle;
+  @include mixins.gpu-accelerate;
+
+  // Default variant: Active Signal Lime Figma 1:1
+  &,
+  &--lime {
+    background: rgba(203, 244, 0, 0.1);
+    color: var(--t26-color-accent-lime, #CBF400);
+    border: 1px solid var(--t26-color-border-dark-highlight, rgba(203, 244, 0, 0.3));
+
+    .c-badge__dot {
+      background-color: var(--t26-color-accent-lime, #CBF400);
+    }
+  }
+
+  // Cyan variant - Secure Horizon Blue
+  &--cyan {
+    background: rgba(63, 138, 253, 0.1);
+    color: var(--t26-color-accent-cyan, #3F8AFD);
+    border: 1px solid rgba(63, 138, 253, 0.3);
+
+    .c-badge__dot {
+      background-color: var(--t26-color-accent-cyan, #3F8AFD);
+    }
+  }
+
+  // Clear blue variant - Figma 1:1 for dark sections (Credentials, Case Studies, CTA, Process, Related Services)
+  &--clear {
+    background: rgba(255, 255, 255, 0.04);
+    color: #9FC7F0;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+
+    .c-badge__dot {
+      background-color: #3F8AFD;
+    }
+  }
+
+  // Light section badge - Figma 1:1 for FAQ, Resources, Overview, Case Outcomes
+  &--light {
+    background: rgba(5, 4, 5, 0.04);
+    color: #858585;
+    border: 1px solid rgba(15, 23, 42, 0.12);
+
+    .c-badge__dot {
+      background-color: #0000FF;
+    }
+  }
+
+  // Starting Point Light Blue badge (Figma 233:1298)
+  &--light-blue {
+    background: #EFF6FF;
+    color: #1D4ED8;
+    border: 1px solid #BFDBFE;
+
+    .c-badge__dot {
+      background-color: #3B82F6;
+    }
+  }
+
+  // L1 Who It's For badge (Figma 137:2283)
+  &--l1-who {
+    background: #E6F4FF;
+    color: #1A4D80;
+    border: 1px solid #B2DDFF;
+
+    .c-badge__dot {
+      background-color: #9FC7F0;
+    }
+  }
+
+  // Hero section badge (Figma 207:1677, 207:1681, 132:1039)
+  &--hero {
+    background: rgba(255, 255, 255, 0.10);
+    color: #FFFFFF;
+    border: 1px solid rgba(255, 255, 255, 0.40);
+
+    .c-badge__dot {
+      background-color: #3F8AFD;
+    }
+  }
+
+  // Dark card variant
+  &--dark {
+    background: var(--t26-color-card-dark, #0C1124);
+    color: var(--t26-color-text-light, #E6E6E6);
+    border: 1px solid var(--t26-color-border-dark, rgba(255, 255, 255, 0.08));
+
+    .c-badge__dot {
+      background-color: #3F8AFD;
+    }
+  }
+
+  // Optional status indicator dot inside badge
+  &__dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: currentColor;
+    display: inline-block;
+    flex-shrink: 0;
+  }
+}
+
+// --------------------------------------------------------------------------
+// 5. BUTTONS (.c-btn - Unified 1:1 Figma 133:1494 / 133:1498 / 73:456)
+// --------------------------------------------------------------------------
+
+.c-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 26px;
+  font-family: var(--t26-font-family-sans, 'Instrument Sans', sans-serif);
+  font-size: 0.875rem; // 14px Figma
+  font-weight: 600;
+  line-height: 1.25;
+  border-radius: 12px;
+  text-decoration: none;
+  cursor: pointer;
+  border: 1px solid transparent;
+  text-align: center;
+  transform: translateZ(0);
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+              background-color 0.2s ease,
+              border-color 0.2s ease,
+              color 0.2s ease;
+  will-change: transform;
+  @include mixins.gpu-accelerate;
+
+  &__arrow {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    stroke: currentColor;
+    color: currentColor;
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform;
+    flex-shrink: 0;
+  }
+
+  &:hover &__arrow {
+    transform: translateX(4px);
+  }
+
+  &:active {
+    transform: translateY(0) scale(0.98);
+  }
+
+  &:disabled,
+  &[aria-disabled="true"] {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  // Primary: Active Signal Lime #CBF400 with Deep Blue #020B2E text (1:1 Figma 133:1494)
+  &--primary {
+    background-color: var(--t26-color-accent-lime, #CBF400);
+    color: var(--t26-color-deep-virgil-blue, #020B2E);
+    border-color: var(--t26-color-accent-lime, #CBF400);
+    box-shadow: 0px 8px 16px 0px rgba(59, 130, 246, 0.25);
+
+    &:hover {
+      background-color: #D8FF00;
+      border-color: #D8FF00;
+      color: var(--t26-color-deep-virgil-blue, #020B2E);
+      transform: translateY(-2px);
+      box-shadow: 0px 12px 24px 0px rgba(59, 130, 246, 0.35);
+    }
+
+    &:active {
+      transform: translateY(0);
+      box-shadow: 0px 4px 10px 0px rgba(59, 130, 246, 0.2);
+    }
+
+    &:focus-visible {
+      outline: 2px solid #FFFFFF;
+      outline-offset: 3px;
+    }
+  }
+
+  // Secondary: Ghost / Transparent with Border (1:1 Figma 133:1498)
+  &--secondary {
+    background-color: rgba(255, 255, 255, 0.04);
+    color: #FFFFFF;
+    border-color: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.2);
+      color: #FFFFFF;
+      transform: translateY(-2px);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--t26-color-accent-lime, #CBF400);
+      outline-offset: 3px;
+    }
+
+    .c-btn__arrow {
+      stroke: currentColor;
+      color: currentColor;
+    }
+  }
+
+  // Blue Variant from Foundations Component Set 73:456 (Type=Primary: Secure Horizon Blue #3F8AFD)
+  &--blue {
+    background-color: #3F8AFD;
+    color: #FFFFFF;
+    border-color: #3F8AFD;
+    border-radius: 999px;
+    padding: 10px 20px;
+    font-size: 13px;
+    box-shadow: 0px 4px 12px 0px rgba(63, 138, 253, 0.38);
+
+    &:hover {
+      background-color: #001D68;
+      border-color: #001D68;
+      box-shadow: 0px 4px 12px 0px rgba(0, 29, 104, 0.38);
+      transform: translateY(-2px);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+  }
+
+  // Size Variants
+  &--sm {
+    padding: 8px 16px;
+    font-size: var(--t26-font-small, 0.8125rem);
+    border-radius: 8px;
+  }
+
+  &--lg {
+    padding: 16px 32px;
+    font-size: 1rem;
+    border-radius: 14px;
+  }
+
+  &--full {
+    width: 100%;
+  }
+}

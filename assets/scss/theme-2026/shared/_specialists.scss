@@ -1,0 +1,673 @@
+// ==========================================================================
+// THEME 2026 - SHARED SPECIALISTS COMPONENT
+// Senior Assessors presentation with 3-column responsive grid, photo avatar,
+// client quote card, meet-the-team CTA, and dual theme support (light L1, dark L2).
+// 1:1 Figma: Node 313:3434 (L1 Light) & Node 132:1119 (L2 Dark).
+// ==========================================================================
+
+@use '../variables' as v;
+@use '../mixins' as m;
+
+.c-specialists {
+  position: relative;
+  width: 100%;
+  padding-block: 48px;
+  isolation: isolate;
+  @include m.font-smoothing;
+
+  @media (min-width: 768px) {
+    padding-block: 64px;
+  }
+
+  @media (min-width: 1024px) {
+    padding-block: 96px;
+  }
+
+  &__container {
+    width: 100%;
+    max-width: 1240px;
+    margin-inline: auto;
+    padding-inline: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px; // 1:1 Figma Node 313:3434 (gap: 24px)
+
+    @media (min-width: 1240px) {
+      padding-inline: 0;
+    }
+  }
+
+  &__main {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+
+    @media (min-width: 1024px) {
+      gap: 64px;
+    }
+  }
+
+  // ------------------------------------------------------------------------
+  // Section Header (1:1 Figma 313:3436 / 132:1121 - Center Aligned)
+  // ------------------------------------------------------------------------
+  &__header {
+    width: 100%;
+    max-width: 868px;
+    margin-inline: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 32px;
+  }
+
+  &__badge {
+    margin: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    border-radius: 100px;
+    font-family: var(--t26-font-family-sans, 'Instrument Sans', sans-serif);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.0833em; // 1px
+    text-transform: uppercase;
+    line-height: 1;
+    background: transparent !important;
+
+    .c-badge__dot,
+    &::before {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background-color: #3F8AFD !important;
+      flex-shrink: 0;
+    }
+  }
+
+  &__heading-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 24px;
+    width: 100%;
+
+    @media (min-width: 768px) {
+      gap: 32px;
+    }
+  }
+
+  &__title {
+    font-family: var(--t26-font-family-sans, 'Instrument Sans', sans-serif);
+    font-size: clamp(1.75rem, 3.5vw, 2.25rem); // 36px
+    font-weight: 700;
+    line-height: 1.22; // 44px
+    letter-spacing: -0.0139em;
+    margin: 0;
+    max-width: 868px;
+    text-align: center;
+  }
+
+  &__subtitle {
+    font-family: var(--t26-font-family-sans, 'Instrument Sans', sans-serif);
+    font-size: 1rem; // 16px
+    font-weight: 400;
+    line-height: 1.6; // 25.6px / 26px
+    margin: 0;
+    max-width: 826px;
+    text-align: center;
+  }
+
+  // ------------------------------------------------------------------------
+  // Grid Layout (Mobile -> Tablet -> Desktop)
+  // ------------------------------------------------------------------------
+  &__grid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+
+    @media (min-width: 768px) {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 28px;
+    }
+
+    @media (min-width: 1024px) {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+  }
+
+  // ------------------------------------------------------------------------
+  // Specialist Card (1:1 Figma 313:3445 / 132:1138)
+  // ------------------------------------------------------------------------
+  &__card {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    transition:
+      transform var(--t26-duration-normal, 250ms) cubic-bezier(0.16, 1, 0.3, 1),
+      border-color var(--t26-duration-fast, 150ms) ease,
+      box-shadow var(--t26-duration-normal, 250ms) ease;
+    @include m.gpu-accelerate;
+
+    @media (min-width: 1024px) {
+      min-height: 472px;
+    }
+
+    &:hover {
+      transform: translateY(-4px);
+    }
+  }
+
+  &__photo-banner {
+    position: relative;
+    width: 100%;
+    height: 211px;
+    overflow: hidden;
+    flex-shrink: 0;
+
+    &--fallback {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #1C3795 0%, #2A327F 100%);
+    }
+  }
+
+  &__photo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    transition: transform var(--t26-duration-normal, 350ms) ease;
+
+    .c-specialists__card:hover & {
+      transform: scale(1.03);
+    }
+  }
+
+  &__avatar-initials {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #FFFFFF;
+    letter-spacing: 0.05em;
+  }
+
+  &__card-content {
+    padding: 24px 24px 28px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    flex-grow: 1;
+  }
+
+  &__card-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  &__name {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 27px;
+    margin: 0;
+  }
+
+  &__role {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.0909em; // 1px
+    margin: 0;
+  }
+
+  &__card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  &__headline {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.3em; // 18.2px
+    margin: 0;
+  }
+
+  &__bio {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.6em; // 20.8px
+    margin: 0;
+  }
+
+  // ------------------------------------------------------------------------
+  // Bottom Frame (Quote + Meet the team wrapper, 24px gap in Figma)
+  // ------------------------------------------------------------------------
+  &__bottom-frame {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+
+  // ------------------------------------------------------------------------
+  // Client Quote (1:1 Figma 313:3472 / 313:3422)
+  // ------------------------------------------------------------------------
+  &__quote-container {
+    width: 100%;
+    max-width: 1240px;
+    padding: clamp(2rem, 3.5vw, 48px);
+    border-radius: 0; // 1:1 Figma (Node 313:3422 / 313:3472 have no borderRadius - sharp rectangle)
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    backdrop-filter: blur(12px);
+  }
+
+  &__quote-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+
+    svg {
+      width: 32px;
+      height: 32px;
+    }
+  }
+
+  // Swiper Quote Slider
+  &__quote-slider {
+    width: 100%;
+    overflow: hidden;
+    cursor: grab;
+
+    &:active,
+    &.swiper-grabbing {
+      cursor: grabbing;
+    }
+  }
+
+  &__quote-slide {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    box-sizing: border-box;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+
+  &__quote-text {
+    font-family: var(--t26-font-family-sans, 'Instrument Sans', sans-serif);
+    font-size: clamp(1rem, 1.3vw, 1.125rem); // 18px
+    font-style: normal;
+    line-height: 1.6em; // 28.8px
+    margin: 0;
+    max-width: 1144px;
+    font-weight: 400;
+    text-align: center;
+  }
+
+  &__quote-author-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    align-items: center;
+  }
+
+  &__quote-author {
+    font-family: var(--t26-font-family-sans, 'Instrument Sans', sans-serif);
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 17px;
+  }
+
+  &__quote-org {
+    font-family: var(--t26-font-family-sans, 'Instrument Sans', sans-serif);
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 15px;
+    color: #C2C2C2;
+  }
+
+  &__rotator {
+    position: static !important;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    justify-content: center;
+    width: auto !important;
+    margin: 0 !important;
+  }
+
+  &__rotator-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    display: inline-block;
+    background-color: transparent;
+    transition: opacity var(--t26-duration-fast, 150ms) ease, background-color var(--t26-duration-fast, 150ms) ease, transform var(--t26-duration-fast, 150ms) ease;
+
+    &:focus-visible {
+      outline: 2px solid var(--t26-color-accent-lime, #CBF400);
+      outline-offset: 2px;
+    }
+
+    &--active {
+      background-color: #CBF400 !important;
+      opacity: 1;
+    }
+  }
+
+  // ------------------------------------------------------------------------
+  // Meet The Team Card (1:1 Figma 313:3483 / 132:1127)
+  // ------------------------------------------------------------------------
+  &__cta-wrap {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+  &__meet-team {
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+    width: 260px;
+    height: 72px;
+    padding: 16px;
+    border-radius: 16px;
+    text-decoration: none;
+    transition:
+      transform var(--t26-duration-fast, 150ms) ease,
+      box-shadow var(--t26-duration-fast, 150ms) ease,
+      border-color var(--t26-duration-fast, 150ms) ease;
+    @include m.focus-ring;
+
+    &:hover {
+      transform: translateY(-2px);
+
+      .c-specialists__meet-team-arrow {
+        transform: translateX(4px);
+      }
+    }
+  }
+
+  &__meet-team-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+
+    svg {
+      width: 18px;
+      height: 18px;
+    }
+  }
+
+  &__meet-team-text {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    gap: 2px;
+    flex-grow: 1;
+  }
+
+  &__meet-team-title {
+    font-family: var(--t26-font-family-sans, 'Instrument Sans', sans-serif);
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 17px;
+  }
+
+  &__meet-team-subtitle {
+    font-family: var(--t26-font-family-sans, 'Instrument Sans', sans-serif);
+    font-size: 11px;
+    font-weight: 400;
+    line-height: 13px;
+  }
+
+  &__meet-team-arrow {
+    flex-shrink: 0;
+    width: 14px;
+    height: 14px;
+    transition: transform var(--t26-duration-fast, 150ms) ease;
+  }
+
+  // ------------------------------------------------------------------------
+  // Theme Variants (L1 Light vs L2 Dark)
+  // ------------------------------------------------------------------------
+
+  // Dark Theme (for L2 - 1:1 Figma 132:1119)
+  &--dark {
+    background-color: #00020C;
+
+    .c-specialists__badge {
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #FFFFFF;
+    }
+
+    .c-specialists__title {
+      color: #FFFFFF;
+    }
+
+    .c-specialists__subtitle {
+      color: #FFFFFF;
+    }
+
+    .c-specialists__card {
+      background: linear-gradient(180deg, #1B2A4E 0%, #090D1A 100%);
+      border: 1px solid rgba(255, 255, 255, 0.10);
+      box-shadow: 0px 12px 32px 0px rgba(0, 0, 0, 0.25);
+
+      &:hover {
+        border-color: rgba(63, 138, 253, 0.35);
+        box-shadow: 0px 16px 36px 0px rgba(0, 0, 0, 0.40);
+      }
+    }
+
+    .c-specialists__photo-banner {
+      background-color: rgba(27, 42, 78, 0.70);
+    }
+
+    .c-specialists__name {
+      color: #FFFFFF;
+    }
+
+    .c-specialists__role {
+      color: #C2C2C2;
+    }
+
+    .c-specialists__headline {
+      color: #9FC7F0;
+    }
+
+    .c-specialists__bio {
+      color: #C2C2C2;
+    }
+
+    .c-specialists__quote-container {
+      background: rgba(12, 17, 36, 0.80);
+      border: 1px solid rgba(255, 255, 255, 0.10);
+      box-shadow: 0px 12px 32px 0px rgba(0, 0, 0, 0.25);
+    }
+
+    .c-specialists__quote-text {
+      color: #FFFFFF;
+    }
+
+    .c-specialists__quote-author {
+      color: #FFFFFF;
+    }
+
+    .c-specialists__quote-org {
+      color: #C2C2C2;
+    }
+
+    .c-specialists__rotator-dot {
+      background-color: rgba(255, 255, 255, 0.30);
+      opacity: 1;
+
+      &--active {
+        background-color: #CBF400 !important;
+      }
+    }
+
+    .c-specialists__meet-team {
+      background: #040612;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+
+      &:hover {
+        border-color: rgba(203, 244, 0, 0.4);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+      }
+    }
+
+    .c-specialists__meet-team-icon {
+      background-color: #020B2E;
+    }
+
+    .c-specialists__meet-team-title {
+      color: #FFFFFF;
+    }
+
+    .c-specialists__meet-team-subtitle {
+      color: #FFFFFF;
+    }
+
+    .c-specialists__meet-team-arrow {
+      color: rgba(255, 255, 255, 0.50);
+    }
+  }
+
+  // Light Theme (for L1 - 1:1 Figma 313:3434)
+  &--light {
+    background-color: #FFFFFF;
+
+    .c-specialists__badge {
+      border: 1px solid rgba(4, 6, 18, 0.08);
+      color: #040612;
+    }
+
+    .c-specialists__title {
+      color: #00020C;
+    }
+
+    .c-specialists__subtitle {
+      color: #00020C;
+    }
+
+    .c-specialists__card {
+      background: linear-gradient(180deg, #FFFFFF 0%, #F3F4F6 100%);
+      border: 1px solid rgba(4, 6, 18, 0.08);
+      box-shadow: 0px 12px 32px 0px rgba(0, 0, 0, 0.08);
+
+      &:hover {
+        border-color: rgba(63, 138, 253, 0.35);
+        box-shadow: 0 16px 36px rgba(15, 23, 42, 0.12);
+      }
+    }
+
+    .c-specialists__photo-banner {
+      background-color: rgba(255, 255, 255, 0.18);
+    }
+
+    .c-specialists__name {
+      color: #00020C;
+    }
+
+    .c-specialists__role {
+      color: #040612;
+    }
+
+    .c-specialists__headline {
+      color: #3F8AFD;
+    }
+
+    .c-specialists__bio {
+      color: #00020C;
+    }
+
+    .c-specialists__quote-container {
+      background: #FFFFFF;
+      border: 1px solid rgba(4, 6, 18, 0.08);
+      box-shadow: 0px 12px 32px 0px rgba(0, 0, 0, 0.08);
+    }
+
+    .c-specialists__quote-text {
+      color: #00020C;
+    }
+
+    .c-specialists__quote-author {
+      color: #00020C;
+    }
+
+    .c-specialists__quote-org {
+      color: #C2C2C2;
+    }
+
+    .c-specialists__rotator-dot {
+      background-color: rgba(4, 6, 18, 0.15);
+      opacity: 1;
+
+      &--active {
+        background-color: #CBF400 !important;
+      }
+    }
+
+    .c-specialists__meet-team {
+      background: #FFFFFF;
+      border: 1px solid rgba(4, 6, 18, 0.08);
+
+      &:hover {
+        border-color: rgba(63, 138, 253, 0.4);
+        box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+      }
+    }
+
+    .c-specialists__meet-team-icon {
+      background-color: #3F8AFD;
+    }
+
+    .c-specialists__meet-team-title {
+      color: #00020C;
+    }
+
+    .c-specialists__meet-team-subtitle {
+      color: #C2C2C2;
+    }
+
+    .c-specialists__meet-team-arrow {
+      color: rgba(4, 6, 18, 0.50);
+    }
+  }
+}

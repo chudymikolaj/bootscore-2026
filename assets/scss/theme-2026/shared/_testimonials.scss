@@ -1,0 +1,230 @@
+// ==========================================================================
+// Theme 2026 - Component: Testimonials 1:1 Figma (Node 241:2008)
+// Mobile-First, BEM, 60FPS
+// ==========================================================================
+
+@use '../tokens' as tokens;
+@use '../variables' as v;
+@use '../mixins' as *;
+
+.c-testimonials {
+  background-color: #060818;
+  padding: 64px 0;
+  position: relative;
+  overflow: hidden;
+
+  @include respond-min(md) {
+    padding: 80px 0;
+  }
+
+  @include respond-min(xl) {
+    min-height: 691px;
+    padding: 101px 0 96px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  // Background layer
+  &__bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  &__bg-img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100% !important;
+    max-width: none;
+    object-fit: cover;
+    object-position: center 30%;
+  }
+
+  &__ribbon {
+    display: none;
+
+    @include mq(md) {
+      display: block;
+      position: absolute;
+      left: -47px;
+      top: -226px;
+      width: 244px;
+      height: 597px !important;
+      max-width: none;
+      pointer-events: none;
+      z-index: 1;
+    }
+  }
+
+  &__container {
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+  }
+
+  &__header {
+    text-align: center;
+    max-width: 704px;
+    margin: 0 auto 32px;
+  }
+
+  &__badge {
+    @include badge-pill;
+    margin-bottom: 16px;
+  }
+
+  &__badge-dot {
+    @include badge-dot;
+  }
+
+  &__title {
+    font-family: var(--t26-font-family-sans, 'Instrument Sans', sans-serif);
+    font-size: clamp(1.75rem, 2.5vw, 2.25rem); // 36px w Figma
+    font-weight: 700;
+    line-height: 1.22; // 44px
+    color: #FFFFFF;
+    letter-spacing: -0.0139em;
+    margin: 0;
+  }
+
+  // Card container (800px max-width, wyśrodkowany)
+  &__card-wrap {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 24px;
+    width: 100%;
+    max-width: 800px;
+    padding: 32px 20px;
+    background: rgba(12, 17, 36, 0.80);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    border-radius: 20px;
+    box-shadow: 0px 12px 32px 0px rgba(0, 0, 0, 0.25);
+
+    @include respond-min(md) {
+      padding: 48px;
+    }
+  }
+
+  &__quote-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+
+    svg {
+      width: 32px;
+      height: 32px;
+      display: block;
+    }
+  }
+
+  // Swiper Testimonials Slider
+  &__slider {
+    width: 100%;
+    overflow: hidden;
+    cursor: grab;
+
+    &:active,
+    &.swiper-grabbing {
+      cursor: grabbing;
+    }
+  }
+
+  &__slide {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    box-sizing: border-box;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+
+  &__quote {
+    margin: 0;
+  }
+
+  &__text {
+    font-family: var(--t26-font-family-sans, 'Instrument Sans', sans-serif);
+    font-size: clamp(1rem, 1.25vw, 1.125rem); // 18px w Figma
+    font-weight: 400;
+    line-height: 1.6; // 28.8px
+    color: #FFFFFF;
+    margin: 0;
+  }
+
+  &__author-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+
+  &__role {
+    font-family: var(--t26-font-family-sans, 'Instrument Sans', sans-serif);
+    font-size: 0.875rem; // 14px w Figma
+    font-weight: 700;
+    line-height: 1.214; // 17px
+    color: #FFFFFF;
+  }
+
+  &__company {
+    font-family: var(--t26-font-family-sans, 'Instrument Sans', sans-serif);
+    font-size: 0.75rem; // 12px w Figma
+    font-weight: 400;
+    line-height: 1.25; // 15px
+    color: #C2C2C2;
+  }
+
+  &__dots {
+    position: static !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 0;
+    width: auto !important;
+  }
+
+  &__dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    display: inline-block;
+    background-color: rgba(255, 255, 255, 0.30);
+    transition: background-color 0.2s ease, transform 0.2s ease;
+
+    &:focus-visible {
+      outline: 2px solid #CBF400;
+      outline-offset: 2px;
+    }
+
+    &--active {
+      background-color: #CBF400;
+    }
+  }
+}

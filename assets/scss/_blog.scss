@@ -1,0 +1,221 @@
+.blog-bg {
+  background-color: $background-color-blue;
+}
+
+.archive--padding {
+  padding: 0 0 clamp-calc(40px, 80px);
+}
+
+.CustomBlogHeader__container {
+  padding: clamp-calc(40px, 130px) 0 clamp-calc(40px, 130px);
+
+  &--title {
+    margin: 0 0 clamp-calc(24px, 34px);
+    font-weight: $font-weight-700;
+    font-size: clamp-calc(28px, 60px);
+    line-height: $subtitle-line-height;
+    color: $font-color-blue;
+  }
+
+  &--description {
+    margin: 0;
+    max-width: 819px;
+    font-size: clamp-calc(18px, 24px);
+    line-height: $text-line-height;
+  }
+}
+
+.CustomBlogPosts__container {
+  padding: 0 0 clamp-calc(40px, 80px);
+
+  .row > .col-12.col-md-6.col-xl-4 {
+    margin: 0 0 24px;
+  }
+
+  &_post {
+    border-radius: $border-radius-16;
+    overflow: hidden;
+  }
+
+  &_post--image {
+    margin: 0;
+    height: 300px;
+    object-fit: cover;
+  }
+
+  &_post--wrapper {
+    padding: 20px clamp-calc(24px, 28px) clamp-calc(24px, 42px);
+    background-color: $background-color-white;
+  }
+
+  &_post--meta {
+    @include flex-row-space-center;
+    justify-content: space-between;
+    margin: 0 0 clamp-calc(24px, 42px);
+  }
+
+  &_post--meta {
+    time {
+      font-weight: $font-weight-700;
+      font-size: 16px;
+      line-height: 28px;
+      color: $font-color-black;
+    }
+
+    .category-badge {
+      margin-bottom: 0;
+
+      .badge {
+        padding: 0 6px 0 0;
+
+        &:last-of-type {
+          padding: 0;
+        }
+
+        font-weight: $font-weight-800;
+        font-size: 16px;
+        line-height: 28px;
+        text-transform: uppercase;
+        color: $font-color-black;
+        text-decoration: none;
+      }
+    }
+  }
+
+  &_post--title {
+    margin: 0 0 clamp-calc(24px, 46px);
+    font-weight: $font-weight-700;
+    font-size: clamp-calc(18px, 20px);
+    line-height: 130%;
+  }
+
+  &_post--more {
+    margin: 0;
+
+    a {
+      font-size: clamp-calc(18px, 24px);
+      line-height: $subtitle-line-height;
+      color: $font-color-blue;
+      text-decoration: none;
+    }
+  }
+}
+
+// Blog Container (Block)
+.CategoriesPills {
+  &__header {
+    width: 100%;
+    @include flex-column;
+    gap: 12px;
+
+    @include respond-min(sm) {
+      @include flex-row-space-start;
+      gap: 24px;
+    }
+
+    margin: 0 auto clamp-calc(24px, 50px);
+  }
+
+  &__container {
+    display: none;
+
+    @include respond-min(xl) {
+      display: flex;
+    }
+
+    gap: 10px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch; // For smooth scrolling on iOS
+    scrollbar-width: thin; // Thin scrollbar for Firefox
+    scroll-behavior: smooth; // Smooth scroll behavior for modern browsers
+    padding-bottom: 6px;
+  }
+
+  &__dropdown {
+    width: 100%;
+
+    @include respond-min(sm) {
+      max-width: 60%;
+    }
+
+    @include respond-min(xl) {
+      display: none;
+    }
+
+    &-select {
+      width: 100%;
+      padding: 10px 24px;
+      font-size: 16px;
+      border: 1px solid $blue-color;
+      border-radius: $border-radius-10;
+      background-color: $background-color-white;
+      color: $blue-color;
+      line-height: 20px;
+      cursor: pointer;
+    }
+  }
+
+  &__search {
+    width: 100%;
+
+    @include respond-min(sm) {
+      max-width: 40%;
+    }
+
+    &-form {
+      @include flex-row-center;
+
+      border: 1px solid $blue-color;
+      border-radius: $border-radius-10;
+      overflow: hidden;
+
+      &-input {
+        width: 100%;
+        padding: 10px 10px 10px 24px;
+        background-color: $background-color-white;
+        border: none;
+        line-height: 20px;
+        font-size: 16px;
+      }
+
+      &-submit {
+        padding: 10px 24px 10px 10px;
+        background-color: $background-color-white;
+        border: none;
+        font-size: 16px;
+        line-height: 20px;
+        color: $font-color-white;
+        cursor: pointer;
+      }
+    }
+  }
+
+  &__categories {
+    @include flex-row;
+    gap: 16px;
+
+    &-pill {
+      padding: 10px 24px;
+      background-color: $background-color-white;
+      color: $blue-color;
+      border: 1px solid $blue-color;
+      border-radius: $border-radius-10;
+      text-decoration: none;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      font-size: 16px;
+      line-height: 20px;
+      white-space: nowrap;
+
+      &:hover {
+        background-color: $blue-color;
+        color: $font-color-white;
+      }
+
+      &--active {
+        background-color: $blue-color;
+        color: $font-color-white;
+        font-weight: $font-weight-700;
+      }
+    }
+  }
+}

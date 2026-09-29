@@ -1,0 +1,45 @@
+body {
+  background-color: $background-color-white;
+  color: $font-color-black;
+}
+
+.site-main {
+  @include flex-column
+}
+
+.container,
+.container-fluid,
+.container-sm,
+.container-md,
+.container-lg,
+.container-xl,
+.container-xxl {
+  --bs-gutter-x: 1.5em;
+
+  @include respond-min(md) {
+    --bs-gutter-x: 3em;
+  }
+}
+
+.swiper {
+  --swiper-theme-color: #8987A1;
+  --swiper-navigation-size: 34px;
+  --swiper-navigation-top-offset: 50%;
+  --swiper-navigation-color: var(--swiper-theme-color);
+}
+
+.btn-green {
+  padding: clamp-calc(18px, 24px) clamp-calc(24px, 48px);
+  background-color: $button-background-color-green;
+  font-size: clamp-calc(16px, 22px);
+  font-weight: $font-weight-700;
+  line-height: 1;
+  color: $font-color-blue;
+  text-align: center;
+  text-decoration: none;
+  border-radius: $border-radius-8;
+
+  &:hover {
+    background-color: darken($button-background-color-green, 5%);
+  }
+}

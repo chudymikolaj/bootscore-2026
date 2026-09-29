@@ -1,0 +1,256 @@
+// ==========================================================================
+// Theme 2026 - Component: ServicesGrid 1:1 Figma (Node 241:1818)
+// Mobile-First, BEM, 60FPS
+// ==========================================================================
+
+@use '../tokens' as tokens;
+@use '../variables' as v;
+@use '../mixins' as *;
+
+.home-services-grid {
+  background-color: #020617;
+  color: #FFFFFF;
+  padding: 64px 0;
+  position: relative;
+
+  @include respond-min(md) {
+    padding: 80px 0;
+  }
+
+  @include respond-min(xl) {
+    padding: 96px 0;
+  }
+
+  &__container {
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  &__header-row {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    margin-bottom: 48px;
+
+    @include respond-min(lg) {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 64px;
+    }
+  }
+
+  &__header-text {
+    max-width: 760px;
+  }
+
+  &__badge {
+    @include badge-pill($color: #7DD3FC);
+    margin-bottom: 24px;
+  }
+
+  &__badge-dot {
+    @include badge-dot(#3B82F6);
+  }
+
+  &__heading-group {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  &__title {
+    font-family: var(--t26-font-family-sans, 'Instrument Sans', sans-serif);
+    font-size: clamp(2rem, 2.78vw, 2.5rem); // 40px w Figma
+    font-weight: 700;
+    line-height: 1.2; // 48px
+    color: #F8FAFC;
+    letter-spacing: -0.0125em;
+    margin: 0;
+  }
+
+  &__subtitle {
+    font-family: var(--t26-font-family-sans, 'Instrument Sans', sans-serif);
+    font-size: 1rem; // 16px w Figma
+    font-weight: 400;
+    line-height: 1.6; // 25.6px w Figma
+    color: #94A3B8;
+    margin: 0;
+  }
+
+  // Callout Card 1:1 Figma 241:1825
+  &__callout-card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+    padding: 24px;
+    border: 1px solid #1E293B;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 400px;
+    flex-shrink: 0;
+  }
+
+  &__callout-icon-wrapper {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    background-color: rgba(59, 130, 246, 0.11);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+
+    svg {
+      display: block;
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  &__callout-text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  &__callout-title {
+    font-family: var(--t26-font-family-sans, 'Instrument Sans', sans-serif);
+    font-size: 0.875rem; // 14px w Figma
+    font-weight: 700;
+    line-height: 1.214; // 17px
+    color: #F8FAFC;
+    margin: 0;
+  }
+
+  &__callout-body {
+    font-family: var(--t26-font-family-sans, 'Instrument Sans', sans-serif);
+    font-size: 0.8125rem; // 13px w Figma
+    font-weight: 400;
+    line-height: 1.385; // 18px
+    color: #94A3B8;
+    margin: 0;
+  }
+
+  // Grid of 6 cards (3x2)
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+
+    @include respond-min(md) {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 32px;
+    }
+
+    @include respond-min(lg) {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+  }
+
+  &__item {
+    display: flex;
+  }
+
+  &__card {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    width: 100%;
+    padding: 32px;
+    background-color: #0F172A;
+    border: 1px solid #1E293B;
+    border-radius: 16px;
+    box-shadow: 0px 12px 24px 0px rgba(0, 0, 0, 0.15);
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.25s ease,
+                box-shadow 0.25s ease;
+    will-change: transform;
+
+    &:hover {
+      transform: translateY(-3px);
+      border-color: rgba(59, 130, 246, 0.4);
+      box-shadow: 0 16px 36px rgba(2, 6, 23, 0.5);
+    }
+  }
+
+  &__card-top {
+    display: flex;
+    align-items: center;
+  }
+
+  &__card-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    background-color: rgba(59, 130, 246, 0.11);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+
+    svg {
+      display: block;
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  &__card-content {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    flex-grow: 1;
+  }
+
+  &__card-title {
+    font-family: var(--t26-font-family-sans, 'Instrument Sans', sans-serif);
+    font-size: 1.25rem; // 20px w Figma
+    font-weight: 700;
+    line-height: 1.2; // 24px
+    color: #F8FAFC;
+    margin: 0;
+  }
+
+  &__card-desc {
+    font-family: var(--t26-font-family-sans, 'Instrument Sans', sans-serif);
+    font-size: 0.875rem; // 14px w Figma
+    font-weight: 400;
+    line-height: 1.5; // 21px
+    color: #94A3B8;
+    margin: 0;
+  }
+
+  &__card-bottom {
+    margin-top: auto;
+    padding-top: 8px;
+  }
+
+  &__card-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--t26-font-family-sans, 'Instrument Sans', sans-serif);
+    font-size: 0.875rem; // 14px w Figma
+    font-weight: 600;
+    line-height: 1.214; // 17px
+    color: #CBF400;
+    text-decoration: none;
+    transition: gap 0.2s ease, opacity 0.2s ease;
+
+    svg {
+      display: block;
+      width: 14px;
+      height: 14px;
+      flex-shrink: 0;
+    }
+
+    &:hover {
+      gap: 10px;
+      color: #CBF400;
+      opacity: 0.9;
+    }
+  }
+}

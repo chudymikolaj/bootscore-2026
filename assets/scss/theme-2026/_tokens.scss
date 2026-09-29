@@ -1,0 +1,304 @@
+// ==========================================================================
+// THEME 2026 - DESIGN TOKENS
+// Core design tokens, SCSS variables, Sass maps, and CSS Custom Properties.
+// ==========================================================================
+
+// --------------------------------------------------------------------------
+// 1. SCSS VARIABLES
+// --------------------------------------------------------------------------
+
+// Colors: Dark palette 1:1 Figma (Poprawki HOME 132:1005 / L1 133:1481 / L2 132:1032)
+$color-cyber-dark:            #040612;
+$color-navbar-dark:           #00020C;
+$color-deep-black:            #00020C;
+$color-card-dark:             #0C1124;
+$color-card-dark-hover:       #141B36;
+$color-card-light:            #FFFFFF;
+$color-card-light-hover:      #F8FAFC;
+$color-bg-light:              #F8FAFC;
+
+// Figma Foundations 66:414 - 9 Solid Colors
+$color-deep-virgil-blue:      #020B2E;
+$color-guardian-blue:         #001D68;
+$color-guardian-pulse-blue:   #0000FF;
+$color-secure-horizon-blue:   #3F8AFD;
+$color-clear-layer-blue:      #9FC7F0;
+$color-active-signal-lime:    #CBF400;
+$color-medium-grey:           #858585;
+$color-soft-grey:             #C2C2C2;
+$color-light-grey:            #E6E6E6;
+
+// Backward-compat aliases
+$color-accent-lime:           $color-active-signal-lime;
+$color-accent-lime-hover:     #B8DB00;
+$color-accent-lime-rgb:       (203, 244, 0);
+$color-accent-cyan:           $color-secure-horizon-blue;
+$color-accent-cyan-rgb:       (63, 138, 253);
+$color-clear-blue:            $color-clear-layer-blue;
+$color-pale-blue:             #D5EAFF;
+$color-deep-blue:             $color-deep-virgil-blue;
+
+// Figma Foundations 66:414 - 7 Gradients
+$gradient-indigo:             linear-gradient(135deg, #0000FF 0%, #020B2E 100%);
+$gradient-cobalt:             linear-gradient(135deg, #3F8AFD 0%, #001D68 100%);
+$gradient-ultramarine:        linear-gradient(135deg, #9FC7F0 0%, #0000FF 100%);
+$gradient-glacier:            linear-gradient(135deg, #9FC7F0 0%, #3F8AFD 100%);
+$gradient-aurora:             linear-gradient(135deg, #3F8AFD 0%, #CBF400 100%);
+$gradient-citron:             linear-gradient(135deg, #CBF400 0%, #E6E6E6 100%);
+$gradient-silver:             linear-gradient(135deg, #E6E6E6 0%, #858585 100%);
+
+// Text Colors - Figma 1:1
+$color-text-white:            #FFFFFF;
+$color-text-light:            $color-light-grey;
+$color-text-muted-dark:       #94A3B8;
+$color-text-dark:             #0F172A;
+$color-text-muted-light:      #64748B;
+$color-text-soft-grey:        $color-soft-grey;
+$color-text-med-grey:         $color-medium-grey;
+
+// Borders & Dividers
+$color-border-dark:           rgba(255, 255, 255, 0.08);
+$color-border-dark-highlight: rgba(203, 244, 0, 0.3);
+$color-border-light:          rgba(15, 23, 42, 0.08);
+
+// Typography: Figma 66:415 Instrument Sans scale
+$font-family-sans:            'Instrument Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+$font-hero:                   clamp(2.25rem, 5vw + 0.5rem, 3.375rem);
+$font-h2:                     clamp(1.75rem, 3vw + 0.25rem, 2.25rem);
+$font-h3:                     clamp(1.25rem, 1.5vw + 0.25rem, 1.5rem);
+$font-body:                   1rem;       // 16px
+$font-small:                  0.875rem;   // 14px
+$font-badge:                  0.6875rem;  // 11px Figma
+$font-stat:                   clamp(2rem, 3.5vw, 2.5rem);
+$letter-spacing-badge:        1.5px;
+
+// 4px Grid Spacing
+$space-4:                     4px;
+$space-8:                     8px;
+$space-12:                    12px;
+$space-16:                    16px;
+$space-20:                    20px;
+$space-24:                    24px;
+$space-32:                    32px;
+$space-40:                    40px;
+$space-48:                    48px;
+$space-64:                    64px;
+$space-80:                    80px;
+$space-96:                    96px;
+
+// Section & Container Layout - Figma 1:1 (desktop 100px / tablet 48px, section 96px)
+$section-py:                  clamp(5rem, 7vw, 6rem);
+$section-py-mobile:           5rem;
+$container-max:               1240px;
+$container-px-desktop:        100px;
+$container-px-tablet:         48px;
+$container-px-mobile:         24px;
+
+// Border Radii
+$radius-sm:                   6px;
+$radius-md:                   10px;
+$radius-lg:                   16px;
+$radius-xl:                   24px;
+$radius-pill:                 9999px;
+
+// Glassmorphism
+$glass-bg-dark:               rgba(12, 16, 28, 0.75);
+$glass-blur:                  16px;
+$glass-bg-light:              rgba(255, 255, 255, 0.85);
+
+// 60FPS Motion Curves & Durations
+$ease-default:                cubic-bezier(0.4, 0, 0.2, 1);
+$ease-out:                    cubic-bezier(0, 0, 0.2, 1);
+$ease-in:                     cubic-bezier(0.4, 0, 1, 1);
+$ease-bounce:                 cubic-bezier(0.34, 1.56, 0.64, 1);
+$duration-fast:               150ms;
+$duration-normal:             250ms;
+$duration-slow:               400ms;
+
+// --------------------------------------------------------------------------
+// 2. SASS TOKEN MAPS
+// --------------------------------------------------------------------------
+
+$colors: (
+  'cyber-dark':            $color-cyber-dark,
+  'navbar-dark':           $color-navbar-dark,
+  'card-dark':             $color-card-dark,
+  'card-dark-hover':       $color-card-dark-hover,
+  'card-light':            $color-card-light,
+  'card-light-hover':      $color-card-light-hover,
+  'bg-light':              $color-bg-light,
+  'accent-lime':           $color-accent-lime,
+  'accent-lime-hover':     $color-accent-lime-hover,
+  'accent-lime-rgb':       $color-accent-lime-rgb,
+  'accent-cyan':           $color-accent-cyan,
+  'accent-cyan-rgb':       $color-accent-cyan-rgb,
+  'clear-blue':            $color-clear-blue,
+  'pale-blue':             $color-pale-blue,
+  'deep-blue':             $color-deep-blue,
+  'guardian-blue':         $color-guardian-blue,
+  'text-white':            $color-text-white,
+  'text-light':            $color-text-light,
+  'text-muted-dark':       $color-text-muted-dark,
+  'text-dark':             $color-text-dark,
+  'text-muted-light':      $color-text-muted-light,
+  'text-soft-grey':        $color-text-soft-grey,
+  'text-med-grey':         $color-text-med-grey,
+  'border-dark':           $color-border-dark,
+  'border-dark-highlight': $color-border-dark-highlight,
+  'border-light':          $color-border-light,
+);
+
+$typography: (
+  'hero':          $font-hero,
+  'h2':            $font-h2,
+  'h3':            $font-h3,
+  'body':          $font-body,
+  'small':         $font-small,
+  'badge':         $font-badge,
+  'stat':          $font-stat,
+  'badge-spacing': $letter-spacing-badge,
+);
+
+$spacing: (
+  '4':             $space-4,
+  '8':             $space-8,
+  '12':            $space-12,
+  '16':            $space-16,
+  '20':            $space-20,
+  '24':            $space-24,
+  '32':            $space-32,
+  '40':            $space-40,
+  '48':            $space-48,
+  '64':            $space-64,
+  '80':            $space-80,
+  '96':            $space-96,
+  'section-py':    $section-py,
+  'container-max': $container-max,
+);
+
+$radii: (
+  'sm':   $radius-sm,
+  'md':   $radius-md,
+  'lg':   $radius-lg,
+  'xl':   $radius-xl,
+  'pill': $radius-pill,
+);
+
+$glass: (
+  'bg-dark':  $glass-bg-dark,
+  'blur':     $glass-blur,
+  'bg-light': $glass-bg-light,
+);
+
+$motion: (
+  'ease':            $ease-default,
+  'ease-out':        $ease-out,
+  'ease-in':         $ease-in,
+  'ease-bounce':     $ease-bounce,
+  'duration-fast':   $duration-fast,
+  'duration-normal': $duration-normal,
+  'duration-slow':   $duration-slow,
+);
+
+// --------------------------------------------------------------------------
+// 3. CSS CUSTOM PROPERTIES EXPORT (:root and .theme-2026-page)
+// --------------------------------------------------------------------------
+
+:root,
+.theme-2026-page {
+  // Colors - Figma Foundations 66:414 (9 Solid Colors)
+  --t26-color-deep-virgil-blue:      #{$color-deep-virgil-blue};
+  --t26-color-guardian-blue:         #{$color-guardian-blue};
+  --t26-color-guardian-pulse-blue:   #{$color-guardian-pulse-blue};
+  --t26-color-secure-horizon-blue:   #{$color-secure-horizon-blue};
+  --t26-color-clear-layer-blue:      #{$color-clear-layer-blue};
+  --t26-color-active-signal-lime:    #{$color-active-signal-lime};
+  --t26-color-medium-grey:           #{$color-medium-grey};
+  --t26-color-soft-grey:             #{$color-soft-grey};
+  --t26-color-light-grey:            #{$color-light-grey};
+
+  // Figma Foundations 66:414 (7 Gradients)
+  --t26-gradient-indigo:             #{$gradient-indigo};
+  --t26-gradient-cobalt:             #{$gradient-cobalt};
+  --t26-gradient-ultramarine:        #{$gradient-ultramarine};
+  --t26-gradient-glacier:            #{$gradient-glacier};
+  --t26-gradient-aurora:             #{$gradient-aurora};
+  --t26-gradient-citron:             #{$gradient-citron};
+  --t26-gradient-silver:             #{$gradient-silver};
+
+  // Base background & card colors
+  --t26-color-cyber-dark:            #{$color-cyber-dark};
+  --t26-color-navbar-dark:           #{$color-navbar-dark};
+  --t26-color-card-dark:             #{$color-card-dark};
+  --t26-color-card-dark-hover:       #{$color-card-dark-hover};
+  --t26-color-card-light:            #{$color-card-light};
+  --t26-color-card-light-hover:      #{$color-card-light-hover};
+  --t26-color-bg-light:              #{$color-bg-light};
+  --t26-color-accent-lime:           #{$color-accent-lime};
+  --t26-color-accent-lime-hover:     #{$color-accent-lime-hover};
+  --t26-color-accent-lime-rgb:       203, 244, 0;
+  --t26-color-accent-cyan:           #{$color-accent-cyan};
+  --t26-color-accent-cyan-rgb:       63, 138, 253;
+  --t26-color-clear-blue:            #{$color-clear-blue};
+  --t26-color-pale-blue:             #{$color-pale-blue};
+  --t26-color-deep-blue:             #{$color-deep-blue};
+  --t26-color-guardian-blue:         #{$color-guardian-blue};
+  --t26-color-text-white:            #{$color-text-white};
+  --t26-color-text-light:            #{$color-text-light};
+  --t26-color-text-muted-dark:       #{$color-text-muted-dark};
+  --t26-color-text-dark:             #{$color-text-dark};
+  --t26-color-text-muted-light:      #{$color-text-muted-light};
+  --t26-color-text-soft-grey:        #{$color-text-soft-grey};
+  --t26-color-text-med-grey:         #{$color-text-med-grey};
+  --t26-color-border-dark:           #{$color-border-dark};
+  --t26-color-border-dark-highlight: #{$color-border-dark-highlight};
+  --t26-color-border-light:          #{$color-border-light};
+  --t26-font-family-sans:            'Instrument Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+
+  // Typography
+  --t26-font-hero:                   #{$font-hero};
+  --t26-font-h2:                     #{$font-h2};
+  --t26-font-h3:                     #{$font-h3};
+  --t26-font-body:                   #{$font-body};
+  --t26-font-small:                  #{$font-small};
+  --t26-font-badge:                  #{$font-badge};
+  --t26-letter-spacing-badge:        #{$letter-spacing-badge};
+  --t26-font-stat:                   #{$font-stat};
+
+  // 4px Grid Spacing
+  --t26-space-4:                     #{$space-4};
+  --t26-space-8:                     #{$space-8};
+  --t26-space-12:                    #{$space-12};
+  --t26-space-16:                    #{$space-16};
+  --t26-space-20:                    #{$space-20};
+  --t26-space-24:                    #{$space-24};
+  --t26-space-32:                    #{$space-32};
+  --t26-space-40:                    #{$space-40};
+  --t26-space-48:                    #{$space-48};
+  --t26-space-64:                    #{$space-64};
+  --t26-space-80:                    #{$space-80};
+  --t26-space-96:                    #{$space-96};
+  --t26-section-py:                  #{$section-py};
+  --t26-container-max:               #{$container-max};
+
+  // Border Radii
+  --t26-radius-sm:                   #{$radius-sm};
+  --t26-radius-md:                   #{$radius-md};
+  --t26-radius-lg:                   #{$radius-lg};
+  --t26-radius-xl:                   #{$radius-xl};
+  --t26-radius-pill:                 #{$radius-pill};
+
+  // Glassmorphism
+  --t26-glass-bg-dark:               #{$glass-bg-dark};
+  --t26-glass-blur:                  #{$glass-blur};
+  --t26-glass-bg-light:              #{$glass-bg-light};
+
+  // 60FPS Motion
+  --t26-ease:                        #{$ease-default};
+  --t26-ease-out:                    #{$ease-out};
+  --t26-ease-in:                     #{$ease-in};
+  --t26-ease-bounce:                 #{$ease-bounce};
+  --t26-duration-fast:               #{$duration-fast};
+  --t26-duration-normal:             #{$duration-normal};
+  --t26-duration-slow:               #{$duration-slow};
+}

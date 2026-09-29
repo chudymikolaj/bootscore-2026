@@ -1,0 +1,278 @@
+// ==========================================================================
+// THEME 2026 - L1 WHO IT'S FOR COMPONENT
+// Split layout: 3D faceted crystal visual & 4 qualification audience tiles.
+// Light section variant (#FAFBFD) with BEM & Mobile-First.
+// ==========================================================================
+
+@use '../tokens' as tokens;
+@use '../variables' as v;
+@use '../mixins' as mixins;
+
+.c-l1-who-its-for {
+  position: relative;
+  background-color: #FFFFFF;
+  color: var(--t26-color-text-dark, #0F172A);
+  overflow: hidden;
+
+  // Subtle ambient backdrop grid/glow
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      var(--t26-color-border-light, rgba(15, 23, 42, 0.08)) 20%,
+      var(--t26-color-border-light, rgba(15, 23, 42, 0.08)) 80%,
+      transparent 100%
+    );
+  }
+
+  // ------------------------------------------------------------------------
+  // Layout Split (Mobile: Stacked, Desktop: 2-Columns)
+  // ------------------------------------------------------------------------
+  &__layout {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+
+    @include mixins.mq('lg') {
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 64px;
+    }
+  }
+
+  // ------------------------------------------------------------------------
+  // Left Column: 1:1 Figma Media Container (480x520, Node 137:2277)
+  // ------------------------------------------------------------------------
+  &__media-col {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+
+    @include mixins.mq('lg') {
+      flex: 0 0 480px;
+      width: 480px;
+      max-width: 480px;
+      align-self: flex-start;
+    }
+  }
+
+  &__media-container {
+    position: relative;
+    width: 100%;
+    max-width: 480px;
+    aspect-ratio: 480 / 520;
+    height: auto;
+    border-radius: 20px;
+    overflow: hidden;
+    background: transparent;
+    transform: translateZ(0);
+
+    @include mixins.mq('lg') {
+      width: 480px;
+      height: 520px;
+      flex-shrink: 0;
+    }
+  }
+
+  &__media-img {
+    position: absolute;
+    left: -52.9167%;  // -254px / 480px
+    top: -2.9808%;    // -15.5px / 520px
+    width: 205.8333% !important;  // 988px / 480px
+    height: 105.9615% !important; // 551px / 520px
+    max-width: none !important;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+
+  &__media-vector {
+    position: absolute;
+    left: 33.125%;   // 159px / 480px
+    top: -7.3077%;   // -38px / 520px
+    width: 56.875%;  // 273px / 480px
+    height: 128.4615%; // 668px / 520px
+    pointer-events: none;
+    z-index: 2;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+
+  &__media-container:hover &__media-img {
+    transform: scale(1.02);
+  }
+
+  &__media-container:hover &__media-vector {
+    transform: scale(1.02);
+  }
+
+  // ------------------------------------------------------------------------
+  // Right Column: Content Header and 4 Cards Grid
+  // ------------------------------------------------------------------------
+  &__content-col {
+    width: 100%;
+    flex: 1;
+    min-width: 0;
+  }
+
+  &__header {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+
+  &__badge {
+    @include mixins.badge-pill(#E6F4FF, #B2DDFF, #1A4D80, 11px);
+    align-self: flex-start;
+    display: inline-flex;
+    margin-bottom: 0;
+
+    .c-badge__dot {
+      @include mixins.badge-dot(#9FC7F0);
+    }
+  }
+
+  &__title {
+    font-family: var(--t26-font-family-sans, 'Instrument Sans', sans-serif);
+    font-size: clamp(1.75rem, 2.5vw, 2.25rem); // 36px
+    font-weight: 700;
+    line-height: 1.22;
+    letter-spacing: -0.0139em;
+    color: #0F172A;
+    margin: 0;
+  }
+
+  &__description {
+    font-family: var(--t26-font-family-sans, 'Instrument Sans', sans-serif);
+    font-size: 0.9375rem; // 15px
+    line-height: 1.6;
+    color: #64748B;
+    margin: 0;
+  }
+
+  // ------------------------------------------------------------------------
+  // 4 Audience Cards (2x2 Grid)
+  // ------------------------------------------------------------------------
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+
+    @include mixins.mq('sm') {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+  }
+
+  &__card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background-color: #FFFFFF;
+    border: 1px solid #E2E8F0;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: none;
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.25s ease,
+                border-color 0.25s ease;
+    will-change: transform;
+
+    &:hover {
+      transform: translateY(-2px);
+      border-color: #CBD5E1;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+    }
+  }
+
+  &__card-icon-container {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background-color: #CBF400;
+    flex-shrink: 0;
+
+    svg {
+      display: block;
+      width: 18px;
+      height: 18px;
+    }
+  }
+
+  &__card-content {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  &__card-title {
+    font-family: var(--t26-font-family-sans, 'Instrument Sans', sans-serif);
+    font-size: 1.125rem; // 18px
+    line-height: 1.35;
+    font-weight: 600;
+    color: #0F172A;
+    margin: 0;
+  }
+
+  &__card-desc {
+    font-family: var(--t26-font-family-sans, 'Instrument Sans', sans-serif);
+    font-size: 0.8125rem; // 13px
+    line-height: 1.5;
+    color: #64748B;
+    margin: 0;
+  }
+
+  &__card-points {
+    list-style: none;
+    padding-left: 0;
+    margin-top: auto;
+    margin-bottom: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--t26-space-8, 8px);
+    border-top: 1px solid var(--t26-color-border-light, rgba(15, 23, 42, 0.08));
+    padding-top: var(--t26-space-16, 16px);
+  }
+
+  &__card-point {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--t26-space-8, 8px);
+    font-size: 0.8125rem; // 13px
+    line-height: 1.45;
+    color: #475569;
+  }
+
+  &__card-point-icon {
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  &__card-point-text {
+    flex: 1;
+  }
+}
+
+// --------------------------------------------------------------------------
+// 60FPS Hardware Accelerated Floating Keyframe
+// --------------------------------------------------------------------------
+@keyframes t26-crystal-float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}

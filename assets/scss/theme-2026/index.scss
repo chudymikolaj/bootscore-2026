@@ -1,0 +1,16 @@
+// ==========================================================================
+// THEME 2026 - ARCHITECTURE ENTRY POINT
+// Dart Sass root manifest uniting tokens, mixins, base resets, and page modules.
+// ==========================================================================
+
+// Core Foundations
+@use 'tokens';
+@use 'variables';
+@use 'mixins';
+@use 'base';
+
+// Feature & View Modules
+@use 'shared';
+@use 'home';
+@use 'l1';
+@use 'l2';

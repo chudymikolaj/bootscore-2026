@@ -1,0 +1,105 @@
+
+.site-header {
+  font-family: "Raleway", sans-serif;
+
+  .navbar {
+    padding: clamp-calc(16px, 42px) 0 clamp-calc(16px, 30px);
+  }
+
+  .navbar-nav {
+    --bs-navbar-color: #{$font-color-blue};
+    --bs-navbar-hover-color: #{darken($font-color-blue, 5%)};
+
+    @include respond-min(xl) {
+      align-items: center;
+      gap: 26px;
+    }
+  }
+
+  .nav-link {
+    --bs-nav-link-font-size: clamp-calc(16px, 18px);
+    --bs-nav-link-font-weight: #{$font-weight-700};
+    position: relative;
+  }
+
+  .nav-link.active {
+    color: $font-color-blue;
+
+    &:after {
+      content: '';
+      height: 2px;
+      width: 100%;
+      position: absolute;
+      background: $font-color-blue;
+      bottom: 5px;
+      left: 0;
+    }
+  }
+
+  .navbar-nav .nav-link {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .navbar-brand {
+    padding: 0;
+
+    img {
+      width: 100%;
+      max-width: clamp-calc(200px, 300px);
+    }
+  }
+
+  .btn-close {
+    --bs-btn-close-color: #{$font-color-blue};
+    height: 32px;
+    width: 32px;
+    padding: 0;
+    background-image: unset;
+
+    svg {
+      width: 100%;
+      height: 100%;
+      fill: $font-color-blue;
+    }
+  }
+
+  .btn-navbar {
+    fill: $font-color-blue;
+
+    &:hover,
+    &:active,
+    &:focus {
+      fill: darken($font-color-blue, 5%);
+    }
+  }
+
+  .special-button a {
+    padding: 24px !important;
+    margin: var(--bs-nav-link-padding-y) 0;
+    font-family: "Open sans", sans-serif;
+
+    @include respond-min(xl) {
+      margin: 0;
+    }
+
+    @include respond-min(xxl) {
+      padding: 24px 40px !important;
+    }
+
+    background-color: $button-background-color-red;
+    border-radius: $border-radius-8;
+    text-align: center;
+    font-weight: $font-weight-700;
+    font-size: clamp-calc(16px, 18px);
+    line-height: 14px;
+    transition: background-color .25s $cubic-bezier-buttons;
+
+    &:hover {
+      background-color: darken($button-background-color-red, 5%);
+      color: darken($button-color-white, 5%) !important;
+    }
+
+    color: $button-color-white !important;
+  }
+}
