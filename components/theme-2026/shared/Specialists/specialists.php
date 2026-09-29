@@ -136,7 +136,7 @@ if (!function_exists('Theme2026_Specialists')) {
                         <?php foreach ($members as $index => $member) :
                             $name         = !empty($member['name']) ? $member['name'] : '';
                             $role         = !empty($member['role']) ? $member['role'] : '';
-                            $member_title = !empty($member['title']) ? $member['title'] : '';
+                            $member_title = !empty($member['title']) ? $member['title'] : (!empty($member['specialization']) ? $member['specialization'] : '');
                             $bio          = !empty($member['bio']) ? $member['bio'] : (!empty($member['description']) ? $member['description'] : '');
                             $photo        = !empty($member['photo']) ? $member['photo'] : '';
                             $initials     = !empty($member['initials']) ? $member['initials'] : '';

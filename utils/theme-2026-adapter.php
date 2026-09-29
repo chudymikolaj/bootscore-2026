@@ -382,6 +382,7 @@ function t26_normalize_specialists($data)
     $mapped[] = array(
       'name'            => isset($m['name']) ? $m['name'] : '',
       'role'            => isset($m['role']) ? $m['role'] : (isset($m['role_credentials']) ? $m['role_credentials'] : ''),
+      'title'           => isset($m['title']) ? $m['title'] : (isset($m['specialization']) ? $m['specialization'] : ''),
       'photo'           => isset($m['photo']) ? $m['photo'] : '',
       'initials'        => isset($m['initials']) ? $m['initials'] : '',
       'specializations' => $spec,
