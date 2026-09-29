@@ -1,0 +1,159 @@
+.GlobalExperience__container {
+  padding: clamp-calc(40px, 80px) 0 clamp-calc(30px, 70px);
+
+  &--wrapper {}
+
+  &--title {
+    margin: 0 0 clamp-calc(24px, 50px);
+    font-weight: $font-weight-700;
+    font-size: clamp-calc(28px, 60px);
+    line-height: $title-line-height;
+    color: $font-color-blue;
+  }
+
+  &__facts {
+    @include flex-column;
+
+    @include respond-min(lg) {
+      @include flex-row;
+    }
+
+    gap: clamp-calc(40px, 140px, 1200px, 1600px);
+    padding: clamp-calc(16px, 50px) clamp-calc(24px, 60px) clamp-calc(16px, 30px);
+    background-color: $facts-background-color-blue;
+    border-radius: $border-radius-20;
+  }
+
+  &__fact {
+    @include flex-column;
+
+    @include respond-min(md) {
+      @include flex-row-start;
+    }
+
+    gap: clamp-calc(18px, 32px);
+  }
+
+  &__fact--icon {
+    width: 100%;
+    max-width: 60px;
+    margin: 9px 0 0;
+  }
+
+  &__fact--description {
+    width: 100%;
+    margin: 0;
+    font-size: clamp-calc(18px, 24px);
+    line-height: $text-line-height;
+    color: $font-color-white;
+  }
+
+  &__fact:first-of-type {
+    width: 100%;
+    max-width: 384px;
+  }
+
+  &__group {
+    margin: clamp-calc(60px, 100px) auto 0;
+    position: relative;
+  }
+
+  &__statistics {
+    @include flex-row;
+    flex-wrap: wrap;
+    gap: clamp-calc(16px, 60px);
+
+    @include respond-min(md) {
+      @include flex-column;
+      flex-wrap: nowrap;
+    }
+  }
+
+  &__stat {
+    @include flex-column;
+    width: calc((100% - #{clamp-calc(20px, 60px)}) / 2);
+
+    @include respond-min(md) {
+      @include flex-row;
+      width: auto;
+    }
+
+    gap: clamp-calc(18px, 24px);
+    max-width: 688px;
+  }
+
+  &__stat--number {
+    width: 100%;
+    max-width: clamp-calc(134px, 184px);
+    margin: 0;
+    font-weight: $font-weight-700;
+    font-size: clamp-calc(40px, 80px);
+    line-height: 1;
+    color: $font-color-blue;
+  }
+
+  &__stat--description {
+    max-width: 484px;
+    margin: 0;
+    font-size: clamp-calc(16px, 24px);
+    line-height: $text-line-height;
+
+    br {
+      display: none;
+
+      @include respond-min(md) {
+        display: block;
+      }
+    }
+  }
+
+  &__group--map {
+    width: 100%;
+    max-width: clamp-calc(860px, 940px, 1400px, 1600px);
+    margin: 40px 0 0;
+    position: relative;
+
+    @include respond-min(md) {
+      margin: 0;
+      position: absolute;
+      top: calc(50% + 30px);
+      right: 0;
+      transform: translateY(-50%);
+      z-index: -1;
+      opacity: .65;
+    }
+
+    @include respond-min(xl) {
+      top: 50%;
+      opacity: 1;
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+
+      @include respond-min(md) {
+        background: linear-gradient(270deg, rgba(239, 241, 246, 0) 10%, #FAFBFD 100%);
+        background-blend-mode: normal, multiply;
+      }
+
+      @include respond-min(xl) {
+        background: linear-gradient(270deg, rgba(239, 241, 246, 0) 37.88%, #FAFBFD 100%);
+      }
+
+      @include respond-min(xxl) {
+        background: unset
+      }
+    }
+  }
+
+  &__group--map img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+}

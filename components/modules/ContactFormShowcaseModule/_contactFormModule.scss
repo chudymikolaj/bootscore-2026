@@ -1,0 +1,46 @@
+.ContactFormShowcaseModule {
+  max-width: unset !important;
+  padding: 0;
+  position: relative;
+
+  .ContactFormModule__container__box {
+    padding: 28px 26px;
+
+    @include respond-min(lg) {
+      width: clamp-calc(400px, 480px, 992px);
+    }
+  }
+
+  .ContactFormModule__container__box--heading {
+    padding: 0 0 24px 0;
+    font-size: clamp-calc(20px, 28px, 768px);
+    line-height: 1.15;
+  }
+
+  .ContactFormModule__container--wrapper {
+    display: inline !important;
+  }
+
+  &.ContactFormModule__container .form__label {
+    font-size: 16px;
+  }
+
+  &.ContactFormModule__container .form__input,
+  &.ContactFormModule__container .form__textarea {
+    padding: 11px !important;
+  }
+
+  &.ContactFormModule__container .form__textarea {
+    min-height: unset;
+    height: unset;
+    resize: none;
+  }
+
+  &.ContactFormModule__container .form__field:last-of-type {
+    padding: 0 0 32px 0;
+  }
+
+  .form__button {
+    font-size: clamp-calc(16px, 18px);
+  }
+}

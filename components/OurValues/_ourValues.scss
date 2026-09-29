@@ -1,0 +1,69 @@
+.OurValues__container {
+  padding: clamp-calc(40px, 100px) 0 clamp-calc(70px, 140px);
+  background-color: $background-color-blue;
+
+  &--title {
+    margin: 0 0 40px;
+    font-weight: $font-weight-700;
+    font-size: clamp-calc(28px, 60px);
+    line-height: $title-line-height;
+    color: $font-color-blue;
+  }
+
+  &--values {
+    max-width: 1090px;
+    margin: auto;
+  }
+
+  &__value {
+    @include flex-column-center;
+    flex-direction: column-reverse;
+
+    @include respond-min(md) {
+      @include flex-row-center;
+
+      &:nth-of-type(even) {
+        flex-direction: row-reverse;
+      }
+    }
+
+    gap: 28px;
+
+    &:not(:last-of-type) {
+      margin: 0 0 40px;
+    }
+  }
+
+  &__value--header {
+    max-width: 629px;
+  }
+
+  &__value--header-title {
+    margin: 0 0 24px;
+    font-weight: $font-weight-700;
+    font-size: clamp-calc(24px, 40px);
+    line-height: $title-line-height;
+    color: $font-color-blue;
+  }
+
+  &__value--header-description {
+    margin: 0;
+    font-size: clamp-calc(18px, 24px);
+    line-height: $text-line-height;
+  }
+
+  &__value--image {
+    width: 100%;
+    max-width: clamp-calc(280px, 425px);
+  }
+
+  &--cta {
+    @include flex-center;
+    width: 100%;
+    margin: clamp-calc(24px, 100px) 0 0;
+  }
+
+  &--cta .btn-green {
+    margin: auto;
+  }
+}

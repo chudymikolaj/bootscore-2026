@@ -1,0 +1,52 @@
+.OpinionCarouselModule__container {
+  padding: clamp-calc(80px, 110px) 0 clamp-calc(40px, 80px);
+
+  .swiper {
+    --swiper-navigation-sides-offset: 10px;
+    --swiper-navigation-top-offset: 236.5px;
+
+    @include respond-min(xl) {
+      --swiper-navigation-sides-offset: 80px;
+    }
+  }
+
+  .swiper-button-lock {
+    display: block;
+  }
+
+  &__opinions {}
+
+  &__opinion {
+    @include flex-column-center;
+  }
+
+  &__opinion--avatar {
+    width: 100%;
+    max-width: 200px;
+    margin: 0 0 16px;
+    border-radius: 200px;
+  }
+
+  &__opinion--client {
+    margin: 0 0 clamp-calc(16px, 30px);
+    text-align: center;
+    line-height: $subtitle-line-height;
+  }
+
+  &__opinion--client-name {
+    font-size: clamp-calc(16px, 18px);
+    font-weight: $font-weight-700;
+  }
+
+  &__opinion--client-other {
+    font-size: clamp-calc(16px, 18px);
+  }
+
+  &__opinion--content {
+    max-width: 900px;
+    padding: 0 6px;
+    font-size: clamp-calc(16px, 18px);
+    text-align: center;
+    line-height: $text-line-height;
+  }
+}

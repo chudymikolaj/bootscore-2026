@@ -1,0 +1,59 @@
+.elementFaq__container {
+  @include flex-column;
+  padding: clamp-calc(40px, 60px) 0;
+
+  &--title {
+    margin: 0 0 clamp-calc(20px, 50px);
+    font-weight: $font-weight-700;
+    font-size: clamp-calc(28px, 60px);
+    line-height: $subtitle-line-height;
+    color: $font-color-blue;
+  }
+}
+
+.elementFaq__faq {
+  margin: 0;
+  transition: all 0.5s ease;
+  height: calc-size(auto, size + 0.5rem);
+
+  line-height: $text-line-height;
+  border-bottom: 1px solid $audit-border-color-blue;
+
+  &--question {
+    @include flex-row-space-center;
+    padding: clamp-calc(18px, 24px) 0;
+    font-size: clamp-calc(18px, 24px);
+    font-weight: $font-weight-600;
+
+    &::marker {
+      content: "";
+    }
+  }
+
+  .faq-arrow {
+    margin-left: 18px;
+    display: inline-block;
+    transition: transform 0.3s;
+    transform: rotate(0deg);
+    color: $audit-border-color-blue;
+  }
+
+  &[open] .faq-arrow {
+    color: $button-background-color-green;
+    transform: rotate(90deg);
+  }
+
+  &--answer {
+    padding: 0 0 clamp-calc(14px, 20px);
+    line-height: 1.45;
+    font-size: clamp-calc(16px, 22px);
+
+    p {
+      margin: 0 0 8px;
+    }
+
+    p:last-of-type {
+      margin: 0;
+    }
+  }
+}

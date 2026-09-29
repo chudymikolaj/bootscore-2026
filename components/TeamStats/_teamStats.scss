@@ -1,0 +1,68 @@
+.team-stats {
+  padding: clamp-calc(60px, 100px) 0;
+  background-color: $footer-background-color-blue;
+  color: $font-color-white;
+
+  &__header {
+    margin-bottom: clamp-calc(40px, 60px);
+  }
+
+  &__tag {
+    font-size: clamp-calc(12px, 18px);
+    font-weight: $font-weight-800;
+    color: $button-background-color-green;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 8px;
+  }
+
+  &__title {
+    font-size: clamp-calc(28px, 40px);
+    font-weight: $font-weight-800;
+    color: $font-color-white;
+    line-height: $title-line-height;
+    margin-bottom: 16px;
+  }
+
+  &__subtitle {
+    font-size: clamp-calc(16px, 24px);
+    line-height: $text-line-height;
+    color: rgba($font-color-white, 0.8);
+  }
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+
+  @include respond-min(lg) {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+  }
+
+  &__item {
+    background-color: rgba($font-color-white, 0.05);
+    border-radius: $border-radius-16;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 10px 30px rgba(#1c3795, 0.5);
+    text-align: center;
+  }
+
+  &__number {
+    font-size: clamp-calc(36px, 48px);
+    font-weight: $font-weight-800;
+    color: $button-background-color-green;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  &__label {
+    font-size: clamp-calc(14px, 18px);
+    font-weight: $font-weight-600;
+    color: rgba($font-color-white, 0.7);
+    line-height: 1.4;
+  }
+}

@@ -1,0 +1,24 @@
+.Showcase-intro-section__container.ShowcaseNewsletterSection {
+  padding: clamp-calc(60px, 110px) 0 clamp-calc(0, 70px);
+
+  .ml-form-align-center {
+    text-align: left !important;
+  }
+
+  .ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody {
+    padding: clamp-calc(30px, 100px) 0 0 !important;
+  }
+
+  .ml-form-embedContainer .ml-form-embedWrapper .ml-form-successBody {
+    padding: 30px 0 0 !important;
+  }
+
+  .ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-fieldRow input {
+    padding: clamp-calc(8px, 12px) clamp-calc(16px, 20px) !important;
+    font-size: clamp-calc(16px, 18px) !important;
+  }
+
+  .ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-embedSubmit button {
+    padding: clamp-calc(8px, 12px) clamp-calc(16px, 20px) !important;
+  }
+}

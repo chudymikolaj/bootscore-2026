@@ -1,0 +1,64 @@
+.OurCompetencesLogotypeWall__container {
+  $logotypesGapY: 16px;
+  $logotypesGapX: clamp-calc(16px, 24px);
+  $logotypeSpaceBetween-2: $logotypesGapX;
+  $logotypeSpaceBetween-4: calc(#{$logotypesGapX} * 3);
+  $logotypeSpaceBetween-6: calc(#{$logotypesGapX} * 5);
+
+  padding: clamp-calc(40px, 100px) 0;
+
+  .container.special-width {
+    @include respond-min(xl) {
+      max-width: 1616px;
+    }
+  }
+
+  &__header {
+    margin: 0 0 clamp-calc(40px, 110px);
+  }
+
+  &__header--title {
+    margin: 0 0 clamp-calc(24px, 50px);
+    font-weight: $font-weight-700;
+    font-size: clamp-calc(28px, 60px);
+    line-height: $title-line-height;
+    color: $font-color-blue;
+  }
+
+  &__header--description {
+    margin: 0;
+    max-width: 957px;
+    font-size: clamp-calc(18px, 24px);
+    line-height: $text-line-height;
+  }
+
+  &__logotypes {
+    @include flex-row-center;
+    flex-wrap: wrap;
+    gap: $logotypesGapY $logotypesGapX;
+  }
+
+  &__logotype {
+    @include flex-center;
+    width: 100%;
+    max-width: calc((100% - #{$logotypeSpaceBetween-2}) / 2);
+
+    @include respond-min(md) {
+      max-width: calc((100% - #{$logotypeSpaceBetween-4}) / 4);
+    }
+
+    @include respond-min(xl) {
+      max-width: calc((100% - #{$logotypeSpaceBetween-6}) / 6);
+    }
+
+    padding: clamp-calc(0, 10px) clamp-calc(10px, 30px);
+    background-color: $logotype-background-color-white;
+    border-radius: $border-radius-16;
+    box-shadow: 0 0 114px $box-shadow-color-white;
+  }
+
+  &__logotype--image {
+    width: 100%;
+    max-width: 180px;
+  }
+}

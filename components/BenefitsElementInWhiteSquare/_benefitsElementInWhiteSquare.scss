@@ -1,0 +1,46 @@
+.BenefitsElementInWhiteSquare__container {
+  padding: clamp-calc(40px, 80px) 0 clamp-calc(40px, 60px);
+  background-color: $background-color-blue;
+  position: relative;
+
+  &--wrapper {
+    padding: clamp-calc(32px, 82px) clamp-calc(24px, 76px);
+    background-color: $background-color-white;
+    border-radius: $border-radius-20;
+    box-shadow: 0px 4px 114px $border-color-blue;
+  }
+
+  &__header {
+    padding: 0 0 clamp-calc(28px, 50px);
+  }
+
+  &__header--title {
+    padding: 0 0 clamp-calc(28px, 50px);
+    margin: 0;
+    font-weight: $font-weight-700;
+    font-size: clamp-calc(28px, 60px);
+    line-height: $subtitle-line-height;
+    color: $font-color-blue;
+  }
+
+  &__header--bar {
+    width: 100%;
+    max-width: clamp-calc(60px, 152px);
+    height: clamp-calc(8px, 16px);
+    background-color: var(--header-bar-color);
+    border-radius: $border-radius-10;
+  }
+
+  &__description {
+    font-size: clamp-calc(18px, 24px);
+    line-height: $text-line-height;
+
+    p {
+      margin: 0 0 6px;
+    }
+
+    p:last-of-type {
+      margin: 0;
+    }
+  }
+}

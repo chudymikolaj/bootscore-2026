@@ -1,0 +1,57 @@
+.team-recognition {
+  padding: clamp-calc(60px, 100px) 0;
+  background-color: $background-color-blue;
+
+  &__header {
+    margin-bottom: 40px;
+  }
+
+  &__tag {
+    font-size: clamp-calc(12px, 18px);
+    font-weight: $font-weight-800;
+    color: $button-background-color-accent-blue;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 8px;
+  }
+
+  &__title {
+    font-size: clamp-calc(28px, 40px);
+    font-weight: $font-weight-800;
+    color: $font-color-blue;
+    line-height: $title-line-height;
+  }
+}
+
+.recognition-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+
+  @include respond-min(md) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.recognition-item {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  padding: 24px;
+  background-color: $logotype-background-color-white;
+  border-radius: $border-radius-16;
+  box-shadow: 0 0 114px $box-shadow-color-white;
+
+
+  svg {
+    color: $button-background-color-accent-blue;
+    flex-shrink: 0;
+  }
+
+  &__text {
+    font-size: clamp-calc(15px, 18px);
+    font-weight: $font-weight-700;
+    color: $font-color-blue;
+    line-height: 1.4;
+  }
+}

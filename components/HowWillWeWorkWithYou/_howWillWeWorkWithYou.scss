@@ -1,0 +1,119 @@
+.HowWillWeWorkWithYou__container {
+  padding: 0 0 clamp-calc(60px, 100px);
+  background-color: $background-color-blue;
+
+  &--wrapper {
+    @include flex-column;
+  }
+
+  &--title {
+    margin: 0 0 clamp-calc(20px, 50px);
+    font-weight: $font-weight-700;
+    font-size: clamp-calc(28px, 60px);
+    line-height: $subtitle-line-height;
+    color: $font-color-blue;
+  }
+
+  &__steps {
+    @include display-grid(1fr);
+
+    @include respond-min(md) {
+      @include display-grid(repeat(2, 1fr));
+    }
+
+    @include respond-min(xl) {
+      @include display-grid(repeat(3, 1fr));
+    }
+
+    flex-wrap: wrap;
+    // gap: clamp-calc(20px, 128px) 26px;
+    gap: 26px;
+  }
+
+  &__step {
+    padding: clamp-calc(24px, 34px) clamp-calc(26px, 38px) clamp-calc(26px, 40px);
+    background-color: $background-color-white;
+    border-radius: $border-radius-16;
+  }
+
+  &__step--count {
+    margin: 0 0 clamp-calc(32px, 62px);
+    font-weight: $font-weight-800;
+    font-size: clamp-calc(16px, 18px);
+    line-height: $subtitle-line-height;
+    letter-spacing: 0.2em;
+    color: var(--stage-color);
+  }
+
+  &__step--name {
+    margin: 0 0 clamp-calc(18px, 34px);
+
+    @include respond-min(md) {
+      @include line-clamp(2);
+      height: 78px;
+    }
+
+    font-weight: $font-weight-700;
+    font-size: clamp-calc(18px, 28px);
+    line-height: $subtitle-line-height;
+  }
+
+  &__step--description {
+    max-width: 389px;
+    margin: 0;
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: clamp-calc(16px, 18px);
+    line-height: $text-line-height;
+    text-align: justify;
+  }
+
+  &__steps--vector {
+    margin: -26px 0;
+    padding: 0 24px;
+
+    @include respond-min(md) {
+      padding: 0 60px;
+    }
+
+    grid-column: 1 / -1;
+    text-align: center;
+    display: none;
+
+    img {
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+
+  .HowWillWeWorkWithYou__container__steps--arrow svg {
+    width: 100%;
+    height: auto;
+  }
+
+  .HowWillWeWorkWithYou__container__steps--arrow path {
+    fill: var(--stage-color);
+  }
+
+  /* Strzałka dla urządzeń mobilnych */
+  @include respond-max(md) {
+    .HowWillWeWorkWithYou__container__steps--arrow:nth-child(1n) {
+      @include flex-center;
+    }
+  }
+
+  /* Strzałka dla tabletów */
+  @include respond-between(md, xl) {
+    .HowWillWeWorkWithYou__container__steps--arrow:nth-child(4n) {
+      @include flex-center;
+    }
+  }
+
+  /* Strzałka dla desktopów */
+  @include respond-min(xl) {
+    .HowWillWeWorkWithYou__container__steps--arrow:nth-child(3n) {
+      @include flex-center;
+    }
+  }
+}

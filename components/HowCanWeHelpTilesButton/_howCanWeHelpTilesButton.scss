@@ -1,0 +1,123 @@
+
+.HowCanWeHelpTilesButton__container {
+  padding: clamp-calc(40px, 60px) 0 0;
+  background-color: $background-color-blue;
+  position: relative;
+  z-index: 1;
+
+  &__title {
+    margin: 0 0 clamp-calc(40px, 60px);
+    font-size: clamp-calc(28px, 60px);
+    font-weight: $font-weight-700;
+    line-height: $title-line-height;
+    color: $font-color-blue
+  }
+
+  &__tiles {
+    @include display-grid-columns-gap;
+  }
+
+  &__tile {
+    padding: 26px 25px 36px;
+    border-radius: $border-radius-16;
+    background-color: $tile-background-color-white;
+  }
+
+  &__tile--image {
+    margin: 0 0 clamp-calc(20px, 50px);
+    height: clamp-calc(170px, 270px);
+    border-radius: $border-radius-10;
+    ;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  &__tile--content {
+    padding: 0 12px;
+  }
+
+  &__tile--title {
+    @include line-clamp(2);
+
+    @include respond-min(md) {
+      height: clamp-calc(65px, 78px);
+    }
+
+    margin: 0 0 clamp-calc(12px, 18px);
+    font-size: clamp-calc(20px, 28px);
+    font-weight: $font-weight-700;
+    line-height: $subtitle-line-height;
+    color: $font-color-black
+  }
+
+  &__tile--description {
+    @include line-clamp(7);
+
+    @include respond-min(md) {
+      height: clamp-calc(176px, 189px);
+    }
+
+    margin: 0 0 30px;
+    font-size: clamp-calc(16px, 18px);
+    line-height: $text-line-height;
+    color: $font-color-black;
+  }
+
+  &__tile--button {
+    font-size: clamp-calc(18px, 24px);
+    text-decoration: none;
+    color: $font-color-blue;
+  }
+
+  &__tile--button img {
+    width: clamp-calc(16px, 22px);
+    margin: 0 0 0 6px;
+  }
+
+  &__element_cta {
+    @include flex-column-start-center;
+    margin: clamp-calc(60px, 110px) auto 0
+  }
+
+  &__element_cta--button {
+    @include inline-flex-row-center;
+    margin: 0 auto 0 0;
+    gap: clamp-calc(24px, 30px);
+    line-height: $button-line-height;
+    font-size: clamp-calc(22px, 46px);
+    font-weight: 600;
+    text-decoration: none;
+
+    &:hover {
+      .HowCanWeHelpTilesButton__container__element_cta--button--icon {
+        background-color: darken($button-background-color-green, 5%);
+      }
+    }
+  }
+
+  &__element_cta--button--icon {
+    min-width: clamp-calc(60px, 90px);
+    min-height: clamp-calc(60px, 90px);
+    background-color: $button-background-color-green;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 24px;
+    border-radius: $border-radius-16;
+    transition: background-color .25s $cubic-bezier-buttons;
+  }
+
+  &__element_cta--decorative_arrows {
+    width: 100%;
+    max-width: clamp-calc(200px, 400px);
+    margin: clamp-calc(-140px, -220px) 0 0;
+    object-fit: contain;
+    object-position: 0 clamp-calc(50px, 70px);
+    position: relative;
+    z-index: -1;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    pointer-events: none;
+    cursor: default;
+  }
+}

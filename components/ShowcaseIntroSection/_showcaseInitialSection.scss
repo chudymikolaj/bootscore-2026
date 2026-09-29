@@ -1,0 +1,210 @@
+.Showcase-intro-section__container {
+  width: 100%;
+  min-height: 580px;
+  padding: clamp-calc(60px, 110px) 0 0;
+  background-color: $background-color-blue;
+  position: relative;
+
+  &__wrapper {
+    width: 100%;
+    position: relative;
+
+    &:has(.ContactFormShowcaseModule) {
+      gap: 24px;
+
+      @include respond-min(lg) {
+        gap: clamp-calc(24px, 32px, 992px);
+        justify-content: space-between;
+        align-items: center;
+      }
+    }
+
+    @include respond-min(lg) {
+      display: flex;
+      align-items: center;
+      z-index: 1;
+    }
+  }
+
+  &:has(.ContactFormShowcaseModule) {
+    .Showcase-intro-section__container__header {
+      @include respond-min(lg) {
+        max-width: clamp-calc(420px, 680px, 992px);
+      }
+    }
+
+    .Showcase-intro-section__container__header--title {
+      font-size: clamp-calc(26px, 58px, 520px) !important;
+    }
+
+    .Showcase-intro-section__container__background {
+      width: 100%;
+
+      @include respond-min(lg) {
+        margin: 0 0 0 clamp-calc(-322px, -132px, 992px);
+
+        img {
+          height: 100% !important;
+        }
+      }
+    }
+  }
+
+  &__header {
+    width: 100%;
+    max-width: clamp-calc(580px, 680px);
+    margin: 0 0 20px;
+
+    @include respond-min(lg) {
+      margin: 0;
+    }
+
+    p:not(#{&--bolded-text}) {
+      margin: 0 0 8px;
+    }
+  }
+
+  &__header--title {
+    margin: 0 0 clamp-calc(20px, 40px, 768px, 1440px);
+    max-width: 680px;
+    font-size: clamp-calc(26px, 58px);
+    font-weight: 700;
+    line-height: 120%;
+    color: $blue-color;
+    max-inline-size: -webkit-max-content;
+    max-inline-size: -moz-max-content;
+    max-inline-size: max-content;
+
+    &:has(+ .Showcase-intro-section__container__header--subtitle) {
+      margin: 0;
+    }
+  }
+
+  &__header--subtitle {
+    margin: 0 0 clamp-calc(20px, 40px, 768px, 1440px);
+    font-size: clamp-calc(16px, 30px);
+    font-weight: $font-weight-700;
+    line-height: 180%;
+    color: $blue-color;
+  }
+
+  &__header--description {
+    font-size: clamp-calc(16px, 24px, 768px);
+    line-height: 150%;
+    text-align: justify;
+    color: #232428;
+  }
+
+  &__header--bolded-text {
+    margin: 0;
+    text-align: justify;
+    font-size: clamp-calc(16px, 24px, 768px);
+    font-weight: 600;
+    line-height: 150%;
+    color: #232428;
+  }
+
+  &--ContactFormWrapper {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 24px;
+
+    @include respond-min(lg) {
+      min-height: 580px;
+      flex-direction: row;
+      flex: 1;
+    }
+
+    .Showcase-intro-section__container__background {
+      @include respond-min(lg) {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        z-index: -1;
+      }
+
+      img {
+        width: 100% !important;
+      }
+    }
+
+    .ContactFormModule__container {
+      max-width: 520px;
+
+      @include respond-min(lg) {
+        margin: auto 0;
+      }
+    }
+  }
+
+  &__background {
+    margin: 0 0 0 auto;
+    position: relative;
+    border-radius: 20px;
+
+    @include respond-min(lg) {
+      margin: 0 0 0 clamp-calc(-322px, -132px, 992px);
+    }
+
+    @include respond-min(lg) {
+      border-radius: unset;
+      border-top-right-radius: 20px;
+      border-bottom-right-radius: 20px;
+      z-index: -1;
+    }
+
+    overflow: hidden;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+
+      @include respond-min(lg) {
+        background: linear-gradient(270deg, rgba(239, 241, 246, 0) 10%, #EFF1F6 100%);
+        background-blend-mode: normal, multiply;
+      }
+
+      @include respond-min(xl) {
+        background: linear-gradient(270deg, rgba(239, 241, 246, 0) 47.88%, #EFF1F6 100%);
+      }
+
+    }
+
+    img {
+      width: 100%;
+      height: 280px;
+
+      @include respond-min(lg) {
+        width: 70vw;
+        height: 100%;
+        // height: 480px;
+        max-width: 900px;
+      }
+
+      @include respond-min(xl) {
+        height: 100%;
+        -o-object-fit: cover;
+        object-fit: cover;
+        -o-object-position: right;
+        object-position: right;
+      }
+
+      -o-object-fit: cover;
+
+      object-fit: cover;
+    }
+  }
+
+  &--description {
+    margin: clamp-calc(40px, 100px) 0 0;
+    font-size: clamp-calc(18px, 24px);
+    line-height: $text-line-height;
+  }
+}

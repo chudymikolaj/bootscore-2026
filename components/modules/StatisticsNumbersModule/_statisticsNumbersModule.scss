@@ -1,0 +1,40 @@
+.StatisticsNumbersModule__container {
+  padding: clamp-calc(40px, 100px) 0 clamp-calc(40px, 100px);
+
+  &--wrapper {
+    @include display-grid(repeat(2, 1fr));
+    gap: clamp-calc(40px, 90px) 24px;
+    letter-spacing: -0.02em;
+
+    @include respond-min(md) {
+      justify-items: flex-start;
+      letter-spacing: unset;
+    }
+
+    @include respond-min(xl) {
+      @include display-grid(repeat(3, 1fr));
+      justify-items: center;
+    }
+  }
+
+  &__realization {
+    max-width: 300px;
+    width: 100%;
+  }
+
+  &__realization--title {
+    margin: 0;
+    max-width: 229px;
+    font-weight: $font-weight-700;
+    font-size: clamp-calc(36px, 100px);
+    line-height: $text-line-height;
+    color: $font-color-blue;
+  }
+
+  &__realization--description {
+    margin: 0;
+    max-width: 327px;
+    font-size: clamp-calc(16px, 24px);
+    line-height: $text-line-height;
+  }
+}

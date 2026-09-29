@@ -1,0 +1,30 @@
+.HowCanWeHelpText__container {
+  padding: clamp-calc(40px, 60px) 0 clamp-calc(60px, 150px);
+  background-color: $background-color-blue;
+
+  &--title {
+    margin: 0 0 clamp-calc(20px, 50px);
+    font-weight: $font-weight-700;
+    font-size: clamp-calc(28px, 60px);
+    line-height: $subtitle-line-height;
+    color: $font-color-blue;
+  }
+
+  &--description {
+    margin: 0;
+    font-size: clamp-calc(18px, 24px);
+    line-height: $text-line-height;
+
+    p {
+      margin: 0 0 8px;
+    }
+
+    p:last-of-type {
+      margin: 0;
+    }
+  }
+
+  &--cta {
+    margin: clamp-calc(24px, 67px) 0 0;
+  }
+}

@@ -1,0 +1,79 @@
+.team-hero {
+  padding: clamp-calc(40px, 80px) 0;
+  background-color: $background-color-blue;
+
+  &__breadcrumbs {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: $font-weight-500;
+    color: rgba($font-color-blue, 0.6);
+    margin-bottom: 32px;
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      transition: color 0.3s ease;
+
+      &:hover {
+        color: $button-background-color-accent-blue;
+      }
+    }
+
+    svg {
+      width: 10px;
+      height: 10px;
+    }
+  }
+
+  &__category {
+    font-size: clamp-calc(12px, 18px);
+    font-weight: $font-weight-800;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: $button-background-color-accent-blue;
+    margin-bottom: 8px;
+  }
+
+  &__title {
+    font-size: clamp-calc(32px, 56px);
+    font-weight: $font-weight-800;
+    color: $font-color-blue;
+    margin-bottom: 24px;
+  }
+
+  &__description {
+    font-size: clamp-calc(16px, 24px);
+    font-weight: $font-weight-400;
+    line-height: $text-line-height;
+    color: $font-color-black;
+    margin-bottom: 40px;
+  }
+
+  &__locations {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding-top: 32px;
+    border-top: 1px solid $border-color-blue;
+  }
+
+  &__location {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    font-weight: $font-weight-700;
+    color: $font-color-blue;
+    background-color: $background-color-white;
+    padding: 10px 20px;
+    border-radius: 100px;
+
+    svg {
+      color: $button-background-color-accent-blue;
+      width: 16px;
+      height: 16px;
+    }
+  }
+}

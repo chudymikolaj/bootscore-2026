@@ -1,0 +1,53 @@
+.WhyUsSection__container {
+  padding: clamp-calc(40px, 86px) 0 40px;
+
+  &__header {
+    margin: 0 0 clamp-calc(40px, 86px);
+    max-width: 960px;
+  }
+
+  &__header--title {
+    margin: 0 0 clamp-calc(16px, 26px);
+    font-weight: $font-weight-700;
+    font-size: clamp-calc(28px, 60px);
+    line-height: $title-line-height;
+    color: $font-color-blue;
+  }
+
+  &__header--description {
+    margin: 0;
+    font-size: clamp-calc(16px, 24px);
+    line-height: $text-line-height;
+  }
+
+  &__tiles {
+    @include display-grid-columns-gap;
+    gap: 26px;
+  }
+
+  &__tile {
+    padding: clamp-calc(60px, 110px) clamp-calc(26px, 36px) clamp-calc(30px, 50px);
+    background-color: $tile-background-color-blue;
+    border-radius: $border-radius-16;
+  }
+
+  &__content {}
+
+  &__content--title {
+    @include respond-min(md) {
+      @include line-clamp(2);
+      height: 78px;
+    }
+
+    margin: 0 0 clamp-calc(16px, 26px);
+    font-weight: $font-weight-700;
+    font-size: clamp-calc(20px, 28px);
+    line-height: $subtitle-line-height;
+  }
+
+  &__content--description {
+    margin: 0;
+    font-size: clamp-calc(15px, 18px);
+    line-height: $text-line-height;
+  }
+}
