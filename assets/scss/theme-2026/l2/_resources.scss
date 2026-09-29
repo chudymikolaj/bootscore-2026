@@ -18,12 +18,8 @@
   .c-container {
     position: relative;
     z-index: 1;
-    max-width: 1440px;
-
-    @include mixins.mq('xl') {
-      padding-left: 48px;
-      padding-right: 48px;
-    }
+    max-width: 1240px;
+    margin: 0 auto;
   }
 
   // Header

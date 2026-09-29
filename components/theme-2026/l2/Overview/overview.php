@@ -45,14 +45,18 @@ if (!function_exists('L2_2026_Overview')) {
                     <!-- Left Column: Visual Mockup / Media Frame (1:1 Figma 132:1087) -->
                     <div class="c-l2-overview__mockup-col">
                         <div class="c-l2-overview__mockup-frame">
-                            <?php if (!empty($image_url)): ?>
+                            <!-- Background Ribbon Vector (Figma 132:1088) -->
+                            <svg class="c-l2-overview__ribbon" width="206" height="504" viewBox="0 0 206 504" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <path d="M0 0L167.387 37.9713V360.531L0.199038 459.57V504L206 381.866V0H0Z" fill="#3F8AFD" fill-opacity="0.3"/>
+                            </svg>
+
+                            <?php if (!empty($image_url) && strpos($image_url, 'overview-mockup.png') === false): ?>
                                 <img src="<?= $image_url; ?>" alt="<?= $image_alt; ?>" class="c-l2-overview__mockup-img" loading="lazy" decoding="async">
                             <?php else: ?>
                                 <div class="c-l2-overview__mockup-placeholder" aria-hidden="true">
-                                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                        <rect width="18" height="18" x="3" y="3" rx="2" ry="2"/>
-                                        <circle cx="9" cy="9" r="2"/>
-                                        <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/>
+                                    <!-- Figma 132:1090 Exact Placeholder Icon -->
+                                    <svg class="c-l2-overview__mockup-icon" width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M37 24.9994L30.828 18.8274C30.0779 18.0775 29.0607 17.6562 28 17.6562C26.9393 17.6562 25.9221 18.0775 25.172 18.8274L7 36.9994M5 1H33C35.2091 1 37 2.79086 37 5V33C37 35.2091 35.2091 37 33 37H5C2.79086 37 1 35.2091 1 33V5C1 2.79086 2.79086 1 5 1ZM17 13C17 15.2091 15.2091 17 13 17C10.7909 17 9 15.2091 9 13C9 10.7909 10.7909 9 13 9C15.2091 9 17 10.7909 17 13Z" stroke="#94A3B8" stroke-width="2" stroke-linecap="round"/>
                                     </svg>
                                     <span class="c-l2-overview__mockup-text">OVERVIEW VISUAL</span>
                                 </div>
